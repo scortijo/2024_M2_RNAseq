@@ -10,7 +10,7 @@ output: rmdformats::downcute
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Présentation des données de RNAseq
+# Présentation des données de RNAseq
 
 
 Vous allez travailler sur des données non publiées (elles sont sur moodle et non disponibles sur ce site du cours), merci de ne pas les partager et les déposer en ligne.  
@@ -27,15 +27,46 @@ La protéine ARP6 est impliquée dans l'intégration du variant d'histone H2A.Z 
 
 **L'objectif de ce projet est d'étudier le rôle possible de H2A.Z dans la réponse transcriptionnelle à la quantité d'azote dans le milieu de culture des plantes**
 
-
 <br>
 
-## Including Plots
+<span style="color:green">Une grosse partie du code est indiquée pour les premières étapes, mais plus le projet avance plus vous aurez à trouver le code par vous-même à l'aide des indications dans le matériel et de ce que vous trouvez dans les aides R et en ligne</span>
 
-You can also embed plots, for example:
+# Préparation de l'environnement et chargement des données
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+- Tout d'abord téléchargez le support du cours et les données.  
+
+- Ensuite ouvrez Rstudio et créez un nouveau document R Markdown (ou script R) que vous enregistrez dans votre dossier de travail (là où sont vos données et où vous voulez enregistrer les figures).  
+
+- Chargez les librairies dont vous aurez besoin en utilisant la fonction suivante (exemple pour une librarie):
+```{r}
+library(tidyverse)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{r, echo=FALSE}
+# toutes les libraries dont nous avons besoin pour cette partie du cours
+library(visdat)
+```
+
+- Enfin, chargez les données et mettez les dans un objet à l'aide du code suivant:
+```{r}
+#RNAseq_data <- read_tsv("")
+```
+
+
+
+# Vérification des données
+
+Verification du tableau importé (format des colonnes, nombre de lignes et colonnes, données manquantes)
+
+## Normalisation par la taille de la librarie
+
+## ACP pour s'assurer que les réplicats sont suffisamment similaires
+
+## Etude de l'expression se quelques gènes pour lesquels nous avons des résultats préliminaires 
+
+
+
+
+
+
+
