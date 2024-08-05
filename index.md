@@ -15,29 +15,29 @@ Afin de pouvoir faire ce cours sur votre ordinateur, téléchargez le matériel 
 
 
 
-Les différentes séances sont (avec accès au cours):
-
-
-### Séance 1 (12/10/2023 13h15-16h30, salle TD5.129): Organisation des données et intro à **R**
-
-[Matériel organisation des données](session1_organisation/materiel/organisation_session.html)  
-
-[Solution des exercices](session1_organisation/materiel/organisation_session_solution_exercices.html)
+## Les différentes séances sont (avec accès au cours):
 
 <br>
 
-[Matériel intro à R](session1_organisation/materiel/intro_R.html)  
+### Séance 1 (12/10/2023 13h15-16h30, salle TD5.129): Vérification des données
 
-[Solution des exercices](session1_organisation/materiel/intro_R_solution_exercices)
+Dans cette séance, vous allez effectuer les premières étapes necéssaires avant la détection de gènes différenciellement exprimé: la vérification de la qualité des données.   
+
+
+[Matériel Vérification des données](seance1/materiel/Verification_Donneees.html)  
+
+
 
 <br>
 
-### Séance 2 (19/10/2023 13h15-16h30, salle TD5.129): Réaliser des graphiques
+### Séance 2 (19/10/2023 13h15-16h30, salle TD5.129): Détection de gènes différentiellement exprimés
 
-[Matériel réaliser des graphiques](session2_ggplot/materiel/ggplot_session.html)  
+Dans cette séance vous allez détecter les gènes différentiellement exprimés entre deux conditions dans nos données.  
 
 
-[Solution des exercices](session2_ggplot/materiel/ggplot_exercise_solutions.html)
+[Matériel DEseq](seance2_ggplot/materiel/DEseq.html)  
+
+
 
 <br>
 
