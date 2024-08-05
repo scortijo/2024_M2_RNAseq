@@ -14,14 +14,14 @@ Ce cours va vous apprendre comment explorer des données de RNA-seq avec **R**.
 Afin de pouvoir faire ce cours sur votre ordinateur, téléchargez le matériel du cours en cliquant sur ![](logo_download.png) et dézippez le dossier téléchargé. Ce dossier contient les données ainsi que le matériel vous permettant de mettre en pratique le cours et de faire les exercices.
 
 
+<br>
 
 ## Les différentes séances sont (avec accès au cours):
 
-<br>
 
 ### Séance 1 (12/10/2023 13h15-16h30, salle TD5.129): Vérification des données
 
-Dans cette séance, vous allez effectuer les premières étapes necéssaires avant la détection de gènes différenciellement exprimé: la vérification de la qualité des données.   
+Dans cette séance, vous allez effectuer les premières étapes nécessaires avant la détection de gènes différenciellement exprimés: la vérification de la qualité des données.   
 
 
 [Matériel Vérification des données](seance1/materiel/Verification_Donneees.html)  
@@ -32,76 +32,31 @@ Dans cette séance, vous allez effectuer les premières étapes necéssaires ava
 
 ### Séance 2 (19/10/2023 13h15-16h30, salle TD5.129): Détection de gènes différentiellement exprimés
 
-Dans cette séance vous allez détecter les gènes différentiellement exprimés entre deux conditions dans nos données.  
+Dans cette séance vous allez détecter les gènes différentiellement exprimés entre chaque paire de conditions dans nos données.  
 
 
-[Matériel DEseq](seance2_ggplot/materiel/DEseq.html)  
-
-
-
-<br>
-
-### Séance 3 (26/10/2023 13h15-16h30, salle TD5.129): Ajouter des résultats de tests statistiques à des graphiques et réorganiser des données
-
-[Partie 1 - Matériel ajouter des résultats de tests statistiques à des graphiques](session3_stats_reorganisation/materiel/statistiques.html)  
-
-[Solution des exercices](session3_stats_reorganisation/materiel/statistiques_solution_exercices.html)  
-
-<br>
-
-[Partie 2 - Matériel réorganisation de données](session3_stats_reorganisation/materiel/reorganisation_donnees.html)  
-
-[Solution des exercices](session3_stats_reorganisation/materiel/reorganisation_donnees_solution_exercices.html)
-
-<br>
-
-### Séance 4 (8/11/2023 13h15-16h30, salle TD5.129): Réorganisation de données - suite
-
-[Matériel réorganisation de données - suite](session4_reorganisation_suite/materiel/reorganisation_suite.html)  
-
-[Solution des exercices](session4_reorganisation_suite/materiel/reorganisation_suite_solution_exercices.html)
-
-
-<br>
-
-### Séance 5 (13/11/2023 13h15-16h30, salle TD5.129): Réorganisation avancée de données
-
-
-[Matériel réorganisation de données avancée](session5_reorganisation_avancee/materiel/reorganisation_avancee.html) 
-
-[Solution des exercices](session5_reorganisation_avancee/materiel/reorganisation_avancee_solution_exercices.html)
-
-<br>
-
-### Séance 6 (20/11/2023 13h15-16h30, salle TD5.129): Exam blanc, Correction de l'exam blanc et trucs et astuces
-
-
-[Exam blanc](session6_exam_blanc/exam_blanc.html) 
-
-[Solution de l'exam blanc](session6_exam_blanc/exam_blanc_2023_solution.html)
-
-
-
-
-### Séance 7 (7/12/2023 9h45-11h15, salle TD5.129): Exam
+[Matériel DEseq](seance2/materiel/DEseq.html)  
 
 
 
 <br>
 
-### BONUS
+### Séance 3 (26/10/2023 13h15-16h30, salle TD5.129): Clustering des gènes et début de l'exploration des clusters
 
-[Créer un Rmarkdown](Rmarkdown/materiel/rmarkdown_session.html) 
+Dans cette séance vous allez detecter des clusters de gènes avec des expressions similaires dans les différentes conditions
 
-[Solution des exercices - Créer un Rmarkdown](Rmarkdown/materiel/Solution.html)
+[Matériel clustering des gènes](seance3/materiel/clustering.html)  
+
 
 
 <br>
 
-### Liens  utiles
+### Séance 4 (8/11/2023 13h15-16h30, salle TD5.129): Fin de l'exploration des clusters et design de primers pour la validation en laboratoire
+
+[Matériel Exploration des clusters](seance4/materiel/reorganisation_suite.html)  
 
 
-[Antisèches](https://www.rstudio.com/resources/cheatsheets/)
+<br>
 
 <br>
 
