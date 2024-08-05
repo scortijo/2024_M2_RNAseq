@@ -16,6 +16,8 @@ Afin de pouvoir faire ce cours sur votre ordinateur, téléchargez le matériel 
 
 <br>
 
+Vous travaillerez en groupe de 2 ou 3 pour l'ensemble de cette matière afin d'identifier des gènes différentiellement exprimés, d'effectuer un clustering de ces gènes et d'explorer un des clusters que vous avez identifié.
+
 ## Les différentes séances sont (avec accès au cours):
 
 
@@ -62,18 +64,15 @@ Dans cette séance vous allez detecter des clusters de gènes avec des expressio
 
 ## Modalités d'évaluation
 
-**L'évaluation de cette matière va comporter:**
 
-**1. Un contrôle continu qui combine les exercices à faire entre les séances sur votre ordinateur personnel. Une première moitié du contrôle continu sera à déposer sur Moodle au plus tard le 7/11/2023 à minuit. La deuxième moitié sera à déposer sur Moodle au plus tard le 26/11/2023 à minuit.**
-
+**L'évaluation de cette matière va se faire par une présentation orale des résultats que votre groupe aura obtenu**
 
 
-**2. Un devoir en classe lors de la dernière séance**
 
 <br>
 
-## Pour utiliser R chez vous: 
-Il est recommandé d'utiliser R régulièrement pour bien comprendre et apprendre. Pour cela le mieux est d'installer **R** et **R studio** sur votre ordinateur:
+## Pour utiliser R sur votre ordinateur: 
+Il est recommandé d'installer **R** et **R studio** sur votre ordinateur afin de pouvoir travailler en autonomie entre les séances. 
 
 [Installer R](https://cran.biotools.fr/)
 
@@ -81,13 +80,16 @@ Il est recommandé d'utiliser R régulièrement pour bien comprendre et apprendr
 
 Dans chaque cas, téléchargez la version pour votre système opérateur (Mac, Windows ou Linux) et installez les programmes normalement.
 
-Vous devez aussi avoir les packages `tidyverse`, `visdat` et `plotly` installés. 
+Vous devez aussi avoir les packages `tidyverse`, `gplots` et `DESeq2` installés. 
 Pour cela:
 1. Assurez vous d'avoir accès à internet
 2. Ouvrez Rstudio
 3. Dans la "console" (panel en haut à gauche), tapez `install.packages(c("tidyverse","visdat", "plotly"))` puis enter
-4. Assurez vous que l'installation a fonctionné en tapant `library(tidyverse)` (puis faites la même chose avec `visdat` et `plotly`)
-5. Le message affiché doit être similaire à la capture d'écran ci-dessous. Si vous avez un message du type: 
+4. Pour `DESeq2` installez en tapant dans la "console" 
+`install.packages("BiocManager")` puis enter (sauf si BiocManager est déjà installé sur votre Rstudio)
+`BiocManager::install("DESeq2")` puis enter
+4. Assurez vous que l'installation a fonctionné en tapant `library(tidyverse)` (puis faites la même chose avec les autres libraries)
+5. Le message affiché doit être similaire à la capture d'écran ci-dessous (pour `tidyverse`). Si vous avez un message du type: 
 "Error in library(tidyverse): there is no package called 'tidyverse'"
 **contactez un des instructeurs**.
 
