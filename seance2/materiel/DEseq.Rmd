@@ -2,7 +2,7 @@
 title: "Analyse d'expression différentielle"
 author: "Sandra"
 date: "2024-08-05"
-output: html_document
+output: rmdformats::downcute
 ---
 
 ```{r setup, include=FALSE}
