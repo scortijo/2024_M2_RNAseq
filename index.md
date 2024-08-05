@@ -7,9 +7,9 @@
 [Mathieu Ingouff](mailto:Mathieu.Ingouff@ird.fr)
 
 
-## Description A CHANGER
+## Description 
 
-Ce cours va vous apprendre comment explorer des données et réaliser des graphiques dans **R**. 
+Ce cours va vous apprendre comment explorer des données de RNA-seq avec **R**. 
 
 Afin de pouvoir faire ce cours sur votre ordinateur, téléchargez le matériel du cours en cliquant sur ![](logo_download.png) et dézippez le dossier téléchargé. Ce dossier contient les données ainsi que le matériel vous permettant de mettre en pratique le cours et de faire les exercices.
 
