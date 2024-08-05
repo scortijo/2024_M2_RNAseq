@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Normalisation et vérification des données"
 author: "Sandra"
 date: "2024-08-05"
