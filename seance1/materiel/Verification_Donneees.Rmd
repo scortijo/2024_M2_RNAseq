@@ -4,6 +4,7 @@ title: "Normalisation et vérification des données"
 author: "Sandra"
 date: "2024-08-05"
 output: html_document
+theme: hacker
 ---
 
 ```{r setup, include=FALSE}
