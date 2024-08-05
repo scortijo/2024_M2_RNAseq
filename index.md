@@ -16,9 +16,9 @@ Afin de pouvoir faire ce cours sur votre ordinateur, téléchargez le matériel 
 
 <br>
 
-:bangbang:
+:bangbang: **Vous travaillerez en groupe de 2 ou 3 pour l'ensemble de cette matière afin d'identifier des gènes différentiellement exprimés, d'effectuer un clustering de ces gènes et d'explorer un des clusters que vous avez identifié.** :bangbang:
 
-**Vous travaillerez en groupe de 2 ou 3 pour l'ensemble de cette matière afin d'identifier des gènes différentiellement exprimés, d'effectuer un clustering de ces gènes et d'explorer un des clusters que vous avez identifié.**
+<br>
 
 ## Les différentes séances sont (avec accès au cours):
 
