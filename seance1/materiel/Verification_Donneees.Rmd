@@ -10,9 +10,22 @@ output: rmdformats::downcute
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Présentation des données
+## Présentation des données de RNAseq
 
 
+Vous allez travailler sur des données non publiées (elles sont sur moodle et non disponibles sur ce site du cours), merci de ne pas les partager et les déposer en ligne.  
+
+Il s'agit de RNAseq qui ont été effectués pour un sauvage Col-0 et le mutant *arp6-1* qui ont poussé avec soit une faible (0.5mM) soit une forte (10mM) concentration en azote. Ily a donc au total:  
+- 3 réplicats du sauvage Col-0 avec une faible (0.5mM) concentration en azote  
+- 3 réplicats du sauvage Col-0 avec une forte (10mM) concentration en azote   
+- 3 réplicats du sauvage mutant *arp6-1* avec une faible (0.5mM) concentration en azote  
+- 3 réplicats du sauvage mutant *arp6-1* avec une forte (10mM) concentration en azote  
+
+La protéine ARP6 est impliquée dans l'intégration du variant d'histone H2A.Z dans la chromatine. Le mutant *arp6-1* comporte donc une faible quantité de H2A.Z dans la chromatine, remplacé par l'histone H2A.   
+
+<br>
+
+**L'objectif de ce projet est d'étudier le rôle possible de H2A.Z dans la réponse transcriptionnelle à la quantité d'azote dans le milieu de culture des plantes**
 
 
 <br>
