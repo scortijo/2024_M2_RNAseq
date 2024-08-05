@@ -11,7 +11,7 @@
 
 Ce cours va vous apprendre comment explorer des données de RNA-seq avec **R**. 
 
-Afin de pouvoir faire ce cours sur votre ordinateur, téléchargez le matériel du cours en cliquant sur <img src="logo_download.png" width=50% height=50%> et dézippez le dossier téléchargé. Ce dossier contient les données ainsi que le matériel vous permettant de mettre en pratique le cours et de faire les exercices.
+Afin de pouvoir faire ce cours sur votre ordinateur, téléchargez le matériel du cours en cliquant sur <img src="https://github.com/scortijo/2024_M2_RNAseq/blob/main/logo_download.png" width=50% height=50%> et dézippez le dossier téléchargé. Ce dossier contient les données ainsi que le matériel vous permettant de mettre en pratique le cours et de faire les exercices.
 
 
 <br>
