@@ -150,15 +150,37 @@ Nous faisons l'ACP sur les données transformées `t()`, avec les gènes en colo
 
 
 
-- L'étape suivante consiste à 
+- L'étape suivante consiste à regarder le pourcentage de la variance expliqué par chaque dimension de l'ACP:
 
 ```{r}
 
-summary(pca_res_CPMnorm_RNAseq_data_expressed)
-
 fviz_eig(pca_res_CPMnorm_RNAseq_data_expressed)
 ```
+Nous voyons que les deux première dimensions de l'ACP expliquent environ 50% de la variance. Dans le graphique suivant, quand nous présenterons les données en fonction de ces deux premières dimensions (ce qui est généralement fait), gardons en tête que 50% de la variance reste non représentée.
 
+- Faisons maintenant le graphique de l'ACP:
+```{r}
+
+fviz_pca_ind(pca_res_CPMnorm_RNAseq_data_expressed, pointsize=3)
+
+```
+Il est difficile de lire cette ACP.
+
+- Afin de faciliter l'interprétation de l'ACP, ajoutons un code couleur pour les échantillons:
+```{r, message=FALSE}
+# chargement d'un tableau expliquant à quel génotype et quelle condition environnementale correspond chaque échantillon
+data_info <- read_tsv("../../../Data_info.txt")
+
+
+# col.ind=data_info$genotype_KNO3 permet d'ajouter le code couleur
+# repel=TRUE permet de faire un sorte que le texte soit lisible pour tous les échantillons
+# invisible="quali" permet d'enlever la moyenne de chaque groupe
+fviz_pca_ind(pca_res_CPMnorm_RNAseq_data_expressed, pointsize=3, col.ind=data_info$genotype_KNO3,  repel=TRUE, invisible="quali") 
+```
+> Que concluez vous de cette ACP?
+> Est-ce que les réplicats sont suffisamment similaire?
+> A quoi correspond la dimension 1?
+> A quoi correspond la dimension 2?
 
 
 
