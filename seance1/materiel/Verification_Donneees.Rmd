@@ -48,7 +48,7 @@ Voici la liste des librairies à charger:
 - factoextra   
 
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
 # toutes les libraries dont nous avons besoin pour cette partie du cours
 library(tidyverse)
 library(visdat)
@@ -177,10 +177,11 @@ data_info <- read_tsv("../../../Data_info.txt")
 # invisible="quali" permet d'enlever la moyenne de chaque groupe
 fviz_pca_ind(pca_res_CPMnorm_RNAseq_data_expressed, pointsize=3, col.ind=data_info$genotype_KNO3,  repel=TRUE, invisible="quali") 
 ```
-> Que concluez vous de cette ACP?
-> Est-ce que les réplicats sont suffisamment similaire?
-> A quoi correspond la dimension 1?
-> A quoi correspond la dimension 2?
+
+> Que concluez vous de cette ACP?  
+> Est-ce que les réplicats sont suffisamment similaires?  
+> A quoi correspond la dimension 1?  
+> A quoi correspond la dimension 2?  
 
 
 
@@ -188,6 +189,32 @@ fviz_pca_ind(pca_res_CPMnorm_RNAseq_data_expressed, pointsize=3, col.ind=data_in
 
 # Etude de l'expression de quelques gènes pour lesquels nous avons des résultats préliminaires 
 
+L'analyse par ACP semble encourageante. Cependant pour aller plus loin dans la vérification des données biologique, nous pouvons aussi vérifier que l'expression de certains gènes se comporte commme attendu dans les données de RNA-seq.
+
+Les gènes pour lesquels nous savons qu'elle doit être l'expression dans les échantillons sont:  
+- *ARP6* (AT3G33520)  
+- *NRT2.1* (transporteur de nitrate, AT1G08090)  
+
+> Pour faire le graphique pour chaque gène, suivez les étapes ci-dessous:  
+> - Passer le nom des lignes en une colonne "gene" à l'aide de la fonction `rownames_to_column`  
+> - Ne garder que la ligne pour notre gène d'intérêt en utilisant la fonction `filter`  
+> - Transformer le format de manière à avoir une colonne avec le nom de l'échantillon et une colonne avec les valeurs d'expression en utilisant `pivot_longer`  
+> - Séparez la colonne des échantillons de manière à avoir 3 nouvelle colonnes: une pour le génotype, une pour la condition en nitrate et une pour le réplicat. Pour cela utilisez la fonction `separate`  
+> - Utilisez `ggplot` pour faire un graphique avec l'expression du gène en fonction du génotype et les points colorés en fonction de la condition en nitrate  
+
+
+*Graphiqe attendu pour ARP6*
+```{r, echo=FALSE}
+# ARP6
+rownames_to_column(CPMnorm_RNAseq_data_expressed, var="gene") %>% 
+  filter(gene=="AT3G33520") %>% 
+  pivot_longer(arp6_0.5mM_rep1:WT_0.5mM_rep3, names_to = "sample", values_to = "expression") %>% 
+  separate(sample, into=c("genotype", "KNO3", "replicate"), sep="_") %>% 
+  ggplot(aes(x=genotype, y=expression, col=KNO3)) +
+  geom_point() +
+  ggtitle(expression(italic("ARP6")))
+
+```
 
 
 
