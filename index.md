@@ -84,7 +84,7 @@ Il est recommandé d'installer **R** et **R studio** sur votre ordinateur afin d
 
 Dans chaque cas, téléchargez la version pour votre système opérateur (Mac, Windows ou Linux) et installez les programmes normalement.
 
-Vous devez aussi avoir les packages `tidyverse`, `gplots` et `DESeq2` installés. 
+Vous devez aussi avoir les packages `tidyverse`, `visdat`, `scTenifoldNet`, `gplots` et `DESeq2` installés. 
 Pour cela:
 1. Assurez vous d'avoir accès à internet
 2. Ouvrez Rstudio

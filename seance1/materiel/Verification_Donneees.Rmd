@@ -42,13 +42,16 @@ La protéine ARP6 est impliquée dans l'intégration du variant d'histone H2A.Z 
 library(tidyverse)
 ```
 Voici la liste des librairies à charger:  
-- tidyverse  
-- visdat  
+- tidyverse   
+- visdat   
+- scTenifoldNet   
 
 
 ```{r, echo=FALSE}
 # toutes les libraries dont nous avons besoin pour cette partie du cours
+library(tidyverse)
 library(visdat)
+library(scTenifoldNet)
 ```
 
 - Enfin, chargez les données et mettez les dans un objet à l'aide du code suivant (modifiez en fonction du chemin vers votre fichier):
@@ -58,7 +61,8 @@ RNAseq_data <- read_tsv("../../../Raw_featureCounts_WT_arp6.txt")
 RNAseq_data
 ```
 
-Vous avez une ligne par gène et une colonne par échantillon.
+Vous avez une ligne par gène et une colonne par échantillon. Pour chaque gène dans chaque échantillon, nous avons une valeur d'expression. C'est le nombre 
+de reads qui ont été séquencé pour ce gène dans cet échantillon.
 
 
 # Vérification de l'import des données
@@ -84,7 +88,44 @@ Nous voyons ici que le format des données est attendu:
 
 # Normalisation par la taille de la librarie
 
+Afin de pouvoir comparer les données dans les différens échantillons, il faut les normaliser pour corriger par la taille de la librarie. La taille de la librairie est le nombre total de reads séquencé pour chaque échantillon. Plus ce nombre total de reads est élevé pour un échantillon, plus la valeur d'expression des gènes est élevé. Il faut donc corriger ces différences entre échantillon.
+
+
+- Pour cela nous utilisons la fonction `cpmNormalization` de la librairie `scTenifoldNet`.
+
+- Cette fonction a besoin d'un tableau uniquement numérique. Nous modifions donc le tableau pour que la colonne des gènes devienne le nom des lignes avec la fonction suivante:
+```{r}
+RNAseq_data <- column_to_rownames(RNAseq_data, var="Geneid")
+
+```
+
+
+- Normalisation avec la fonction `cpmNormalization` pour avoir le nombre de reads de chaque gène par million de reads de la librarie:
+```{r}
+CPMnorm_RNAseq_data <- cpmNormalization(RNAseq_data)
+```
+
+- Comme le format de sortie de la fonction n'est pas un data.frame (qui est le format nécessaire pour la suite), nous devons changer le format avec la fontion suivante:  
+```{r}
+CPMnorm_RNAseq_data <- as.data.frame.matrix(CPMnorm_RNAseq_data)
+
+```
+
+```{r, echo=FALSE}
+head(CPMnorm_RNAseq_data)
+```
+
+Nous avons maintenant un tableau avec les niveaux d'expression normalisés par la taille de la librarie pour chaque gène.
+
+
 # ACP pour s'assurer que les réplicats sont suffisamment similaires
+
+Une des premières vérifications biologique que nous faisons sur nos données est de s'assurer que les 3 réplicats pour chaque génotype et condition sont suffisamment similaire. Pour cela nous utilisons une méthode de visualisation: **l'Analyse en Composante Principale (ACP)**. Avant d'aller plus loin, si vous ne connaissez pas le principe de l'ACP, je vous recommande de regarder cette [vidéo d'introduction à l'ACP](https://www.youtube.com/watch?v=y5hzRYZxd4Y&ab_channel=EpiMedOpenCourse).  
+
+
+
+
+
 
 # Etude de l'expression se quelques gènes pour lesquels nous avons des résultats préliminaires 
 

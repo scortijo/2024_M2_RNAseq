@@ -1579,7 +1579,8 @@ fonction suivante (exemple pour une librarie).</p></li>
 ## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 <p>Voici la liste des librairies à charger:<br />
 - tidyverse<br />
-- visdat</p>
+- visdat<br />
+- scTenifoldNet</p>
 <ul>
 <li>Enfin, chargez les données et mettez les dans un objet à l’aide du
 code suivant (modifiez en fonction du chemin vers votre fichier):</li>
@@ -1604,7 +1605,10 @@ RNAseq_data</code></pre>
 ## # ℹ 8 more variables: WT_10mM_rep2 &lt;dbl&gt;, WT_10mM_rep3 &lt;dbl&gt;,
 ## #   arp6_10mM_rep1 &lt;dbl&gt;, arp6_10mM_rep2 &lt;dbl&gt;, arp6_10mM_rep3 &lt;dbl&gt;,
 ## #   WT_0.5mM_rep1 &lt;dbl&gt;, WT_0.5mM_rep2 &lt;dbl&gt;, WT_0.5mM_rep3 &lt;dbl&gt;</code></pre>
-<p>Vous avez une ligne par gène et une colonne par échantillon.</p>
+<p>Vous avez une ligne par gène et une colonne par échantillon. Pour
+chaque gène dans chaque échantillon, nous avons une valeur d’expression.
+C’est le nombre de reads qui ont été séquencé pour ce gène dans cet
+échantillon.</p>
 </div>
 <div id="vérification-de-limport-des-données" class="section level1">
 <h1>Vérification de l’import des données</h1>
@@ -1627,10 +1631,67 @@ Nous voyons ici que le format des données est attendu:<br />
 </div>
 <div id="normalisation-par-la-taille-de-la-librarie" class="section level1">
 <h1>Normalisation par la taille de la librarie</h1>
+<p>Afin de pouvoir comparer les données dans les différens échantillons,
+il faut les normaliser pour corriger par la taille de la librarie. La
+taille de la librairie est le nombre total de reads séquencé pour chaque
+échantillon. Plus ce nombre total de reads est élevé pour un
+échantillon, plus la valeur d’expression des gènes est élevé. Il faut
+donc corriger ces différences entre échantillon.</p>
+<ul>
+<li><p>Pour cela nous utilisons la fonction
+<code>cpmNormalization</code> de la librairie
+<code>scTenifoldNet</code>.</p></li>
+<li><p>Cette fonction a besoin d’un tableau uniquement numérique. Nous
+modifions donc le tableau pour que la colonne des gènes devienne le nom
+des lignes avec la fonction suivante:</p></li>
+</ul>
+<pre class="r"><code>RNAseq_data &lt;- column_to_rownames(RNAseq_data, var=&quot;Geneid&quot;)</code></pre>
+<ul>
+<li>Normalisation avec la fonction <code>cpmNormalization</code> pour
+avoir le nombre de reads de chaque gène par million de reads de la
+librarie:</li>
+</ul>
+<pre class="r"><code>CPMnorm_RNAseq_data &lt;- cpmNormalization(RNAseq_data)</code></pre>
+<ul>
+<li>Comme le format de sortie de la fonction n’est pas un data.frame
+(qui est le format nécessaire pour la suite), nous devons changer le
+format avec la fontion suivante:</li>
+</ul>
+<pre class="r"><code>CPMnorm_RNAseq_data &lt;- as.data.frame.matrix(CPMnorm_RNAseq_data)</code></pre>
+<pre><code>##           arp6_0.5mM_rep1 arp6_0.5mM_rep2 arp6_0.5mM_rep3 WT_10mM_rep1
+## AT1G01010       10.052817        8.073799        6.019492    12.978821
+## AT1G01020       16.183156       13.600140       13.071398    12.587072
+## AT1G01030        2.489716        4.807300        3.639693     3.440580
+## AT1G01040       48.091454       46.357576       41.252772    41.687225
+## AT1G01050       64.427281       60.327508       63.782122    67.959970
+## AT1G01060        4.603626        2.793986        3.989664     1.430736
+##           WT_10mM_rep2 WT_10mM_rep3 arp6_10mM_rep1 arp6_10mM_rep2
+## AT1G01010    11.275950    14.355056       7.092418       8.887736
+## AT1G01020    15.680861    13.855750      12.332926      13.688946
+## AT1G01030     2.450619     3.162273       2.442944       3.188590
+## AT1G01040    42.017262    44.063780      34.319422      41.735709
+## AT1G01050    60.187518    57.316202      61.585828      65.512694
+## AT1G01060     2.140414     6.407764       2.876369       1.099514
+##           arp6_10mM_rep3 WT_0.5mM_rep1 WT_0.5mM_rep2 WT_0.5mM_rep3
+## AT1G01010       8.835543     11.968238    11.3271061     14.596911
+## AT1G01020      12.290042     15.863643    17.0578159     14.106847
+## AT1G01030       2.391576      3.313739     3.2235243      3.360440
+## AT1G01040      39.726729     45.757798    46.9761505     55.981078
+## AT1G01050      58.748614     66.371721    67.3134547     61.161756
+## AT1G01060       3.543075      1.938890     0.9849657      1.750229</code></pre>
+<p>Nous avons maintenant un tableau avec les niveaux d’expression
+normalisés par la taille de la librarie pour chaque gène.</p>
 </div>
 <div id="acp-pour-sassurer-que-les-réplicats-sont-suffisamment-similaires" class="section level1">
 <h1>ACP pour s’assurer que les réplicats sont suffisamment
 similaires</h1>
+<p>Une des premières vérifications biologique que nous faisons sur nos
+données est de s’assurer que les 3 réplicats pour chaque génotype et
+condition sont suffisamment similaire. Pour cela nous utilisons une
+méthode de visualisation: <strong>l’Analyse en Composante Principale
+(ACP)</strong>. Avant d’aller plus loin, si vous ne connaissez pas le
+principe de l’ACP, je vous recommande de regarder cette <a href="https://www.youtube.com/watch?v=y5hzRYZxd4Y&amp;ab_channel=EpiMedOpenCourse">vidéo
+d’introduction à l’ACP</a>.</p>
 </div>
 <div id="etude-de-lexpression-se-quelques-gènes-pour-lesquels-nous-avons-des-résultats-préliminaires" class="section level1">
 <h1>Etude de l’expression se quelques gènes pour lesquels nous avons des
