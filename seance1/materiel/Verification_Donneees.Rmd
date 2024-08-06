@@ -37,32 +37,56 @@ La protéine ARP6 est impliquée dans l'intégration du variant d'histone H2A.Z 
 
 - Ensuite ouvrez Rstudio et créez un nouveau document R Markdown (ou script R) que vous enregistrez dans votre dossier de travail (là où sont vos données et où vous voulez enregistrer les figures).  
 
-- Chargez les librairies dont vous aurez besoin en utilisant la fonction suivante (exemple pour une librarie):
+- Chargez les librairies dont vous aurez besoin en utilisant la fonction suivante (exemple pour une librarie).
 ```{r}
 library(tidyverse)
 ```
+Voici la liste des librairies à charger:  
+- tidyverse  
+- visdat  
+
 
 ```{r, echo=FALSE}
 # toutes les libraries dont nous avons besoin pour cette partie du cours
 library(visdat)
 ```
 
-- Enfin, chargez les données et mettez les dans un objet à l'aide du code suivant:
-```{r}
-#RNAseq_data <- read_tsv("")
+- Enfin, chargez les données et mettez les dans un objet à l'aide du code suivant (modifiez en fonction du chemin vers votre fichier):
+```{r, message=FALSE}
+RNAseq_data <- read_tsv("../../../Raw_featureCounts_WT_arp6.txt")
+
+RNAseq_data
 ```
 
+Vous avez une ligne par gène et une colonne par échantillon.
 
 
-# Vérification des données
+# Vérification de l'import des données
 
-Verification du tableau importé (format des colonnes, nombre de lignes et colonnes, données manquantes)
+Avant de faire la normalisation des données et leur vérification, nous devons nous assurer que l'import c'est bien passé.
 
-## Normalisation par la taille de la librarie
+> Pour cela, vérifiez que nous avons bien le nombre de lignes et colonnes attendu, 
+que les colonnes sont bien au bon format et qu'il n'y a pas de données manquantes.  
 
-## ACP pour s'assurer que les réplicats sont suffisamment similaires
+> Exemple de fonctions que vous pouvez utiliser: `dim()`, `vis_dat`
 
-## Etude de l'expression se quelques gènes pour lesquels nous avons des résultats préliminaires 
+```{r, echo=FALSE}
+
+vis_dat(RNAseq_data)
+
+
+```
+Nous voyons ici que le format des données est attendu:  
+- Il n'y a pas de données manquantes.  
+- La colonne avec le nom des gène est bien du texte.  
+- Les colonnes avec les valeurs d'expression sont bien numériques.  
+
+
+# Normalisation par la taille de la librarie
+
+# ACP pour s'assurer que les réplicats sont suffisamment similaires
+
+# Etude de l'expression se quelques gènes pour lesquels nous avons des résultats préliminaires 
 
 
 
