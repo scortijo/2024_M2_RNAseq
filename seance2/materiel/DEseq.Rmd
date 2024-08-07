@@ -172,10 +172,10 @@ write_tsv(DESeq_result_0.5mM, file="../DEseq_0.5mM_WT_vs_arp6.txt")
 # Détection de gènes différentiellement exprimés pour les 3 autres comparaisons
 
 > Recopiez le code ci-dessus pour détecter les gènes différentiellement exprimés pour 
-les 3 autres comparaisons suivantes:
-- WT vs arp6-1 en forte concentration (10 mM) de nitrate
-- Faible concentration (0.5 mM) vs forte concentration (10 mM) de nitrate chez le WT
-- Faible concentration (0.5 mM) vs forte concentration (10 mM) de nitrate chez le mutant arp6-1
+les 3 autres comparaisons suivantes:   
+- WT vs arp6-1 en forte concentration (10 mM) de nitrate   
+- Faible concentration (0.5 mM) vs forte concentration (10 mM) de nitrate chez le WT   
+- Faible concentration (0.5 mM) vs forte concentration (10 mM) de nitrate chez le mutant arp6-1   
 
 
 **Attention! N'oubliez pas de nommer les objets différemment pour chaque comparaison afin de ne pas écraser les résultats de l'analyse précédente.**
