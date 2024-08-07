@@ -9,22 +9,15 @@ output: rmdformats::downcute
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+<br>
+<br>
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+Dans cette séance, vous allez explorer les gènes différentiellement exprimés pour détecter des groupes de gènes d'intérêt.   
+Dans un premier temps, vous allez regrouper tous les gènes différentiellement exprimés dans les différentes comparaisons. Puis vous allez effectuer un clustering hierarchisé pour identifier les gènes avec des expression similaires dans les différents échantillons.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+# Regroupement de tous les gènes différentiellement exprimés.
 
-```{r cars}
-summary(cars)
-```
 
-## Including Plots
 
-You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
