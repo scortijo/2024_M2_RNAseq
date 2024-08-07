@@ -1527,7 +1527,7 @@ margin-left: 0 !important;
 <!-- Don't indent these lines or it will mess pre blocks indentation --> 
 <div class="page-content has-page-title">
 <p><br> <br></p>
-<p>Dans cette séance; vous allez effectuer une détection de gènes
+<p>Dans cette séance vous allez effectuer une détection de gènes
 différentiellement exprimés. Pour cela vous allez utiliser le package
 <code>DESeq2</code>. Voici le <a href="https://www.bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html">lien
 vers la notice complete de DESeq2</a>. Nous n’allons utiliser qu’une
@@ -1583,11 +1583,11 @@ condition environnementale)</p>
 <pre class="r"><code># Définition du dossier contenant les données d&#39;expression pour tous 
 # les échantillons de la comparaison analysée 
 
-directory_0.5mM &lt;- &quot;../../../0.5mM_WT_vs_arp6/&quot;
+directory_0.5mM &lt;- &quot;../../../data/0.5mM_WT_vs_arp6/&quot;
 sampleFiles_0.5mM &lt;- list.files(directory_0.5mM)
 
 # Chargement du fichier contenant les information sur les échantillons
-sampleCondition_0.5mM &lt;- read_table(&quot;../../../Data_info_WT_arp6_0.5mM.txt&quot;)
+sampleCondition_0.5mM &lt;- read_table(&quot;../../../data/Data_info_WT_arp6_0.5mM.txt&quot;)
 
 # Création d&#39;un objet combinant le nom des fichiers des échantillons et 
 # les informations sur ces échantillons
@@ -1740,7 +1740,7 @@ exprimé?</p>
 <li>Finalement, exportez le résultat afin de le conserver sans avoir à
 refaire toute l’analyse:</li>
 </ul>
-<pre class="r"><code>write_tsv(DESeq_result_0.5mM, file=&quot;DEseq_0.5mM_WT_vs_arp6.txt&quot;)</code></pre>
+<pre class="r"><code>write_tsv(DESeq_result_0.5mM, file=&quot;../DEseq_0.5mM_WT_vs_arp6.txt&quot;)</code></pre>
 </div>
 </div>
 <div id="détection-de-gènes-différentiellement-exprimés-pour-les-3-autres-comparaisons" class="section level1">

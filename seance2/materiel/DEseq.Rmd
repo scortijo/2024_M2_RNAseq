@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 <br>
 <br>
 
-Dans cette séance; vous allez effectuer une détection de gènes différentiellement exprimés. Pour cela vous allez utiliser le package `DESeq2`. Voici le [lien vers la notice complete de DESeq2](https://www.bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html). Nous n'allons utiliser qu'une partie des fonctionnalités de DESeq2, et je vous recommande de regarder les autres possibilités offertes par ce package spécialisé dans l'analyse de données RNAseq.
+Dans cette séance vous allez effectuer une détection de gènes différentiellement exprimés. Pour cela vous allez utiliser le package `DESeq2`. Voici le [lien vers la notice complete de DESeq2](https://www.bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html). Nous n'allons utiliser qu'une partie des fonctionnalités de DESeq2, et je vous recommande de regarder les autres possibilités offertes par ce package spécialisé dans l'analyse de données RNAseq.
 
 
 # Préparation de l'environnement
@@ -29,8 +29,6 @@ Voici la liste des libraries dont vous aurez besoin:
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
 library(DESeq2)
-
-RNAseq_data <- read_tsv("../../../Raw_featureCounts_WT_arp6.txt")
 ```
 
 <br>
@@ -61,11 +59,11 @@ Afin de créer cet objet il faut les informations suivantes:
 # Définition du dossier contenant les données d'expression pour tous 
 # les échantillons de la comparaison analysée 
 
-directory_0.5mM <- "../../../0.5mM_WT_vs_arp6/"
+directory_0.5mM <- "../../../data/0.5mM_WT_vs_arp6/"
 sampleFiles_0.5mM <- list.files(directory_0.5mM)
 
 # Chargement du fichier contenant les information sur les échantillons
-sampleCondition_0.5mM <- read_table("../../../Data_info_WT_arp6_0.5mM.txt")
+sampleCondition_0.5mM <- read_table("../../../data/Data_info_WT_arp6_0.5mM.txt")
 
 # Création d'un objet combinant le nom des fichiers des échantillons et 
 # les informations sur ces échantillons
@@ -168,7 +166,7 @@ View(DESeq_result_0.5mM)
 
 - Finalement, exportez le résultat afin de le conserver sans avoir à refaire toute l'analyse:
 ```{r}
-write_tsv(DESeq_result_0.5mM, file="DEseq_0.5mM_WT_vs_arp6.txt")
+write_tsv(DESeq_result_0.5mM, file="../DEseq_0.5mM_WT_vs_arp6.txt")
 ```
 
 # Détection de gènes différentiellement exprimés pour les 3 autres comparaisons
