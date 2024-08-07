@@ -18,7 +18,7 @@ Dans cette séance; vous allez effectuer une détection de gènes différentiell
 
 # Préparation de l'environnement
 
-- Dans un premier temps, créez un nouveau R markdown (ou réutilisez celui de la séance précédente), chargez les libraries dont vous aurez besoin.  
+- Dans un premier temps, créez un nouveau R markdown (ou réutilisez celui de la séance précédente) et chargez les libraries dont vous aurez besoin.  
 
 Voici la liste des libraries dont vous aurez besoin:  
 - tidyverse  
@@ -35,36 +35,150 @@ RNAseq_data <- read_tsv("../../../Raw_featureCounts_WT_arp6.txt")
 
 <br>
 
-*Avec DESeq2 nous detections les gènes différentiellement exprimés entre 2 conditions. Nous allons donc devoir faire l'analyse pour chacune des paires suivantes:*  
-*- WT vs arp6-1 en faible concentration (0.5 mM) de nitrate*
-*- WT vs arp6-1 en forte concentration (10 mM) de nitrate*
-*- Faible concentration (0.5 mM) vs forte concentration (10 mM) de nitrate chez le WT*
-*- Faible concentration (0.5 mM) vs forte concentration (10 mM) de nitrate chez le mutant arp6-1*
-
-# 
+**Avec DESeq2 nous detections les gènes différentiellement exprimés entre 2 conditions. Nous allons donc devoir faire l'analyse pour chacune des comparaisons suivantes:**  
+**- WT vs arp6-1 en faible concentration (0.5 mM) de nitrate**
+**- WT vs arp6-1 en forte concentration (10 mM) de nitrate**
+**- Faible concentration (0.5 mM) vs forte concentration (10 mM) de nitrate chez le WT**
+**- Faible concentration (0.5 mM) vs forte concentration (10 mM) de nitrate chez le mutant arp6-1**
 
 
-# Creation de l'objet au format nécessaire à DESeq
+
+# Détection de gènes différentiellement exprimés entre WT vs arp6-1 en faible concentration (0.5 mM) de nitrate
+
+Nous allons faire ensemble la détection de gènes différentiellement exprimés entre WT et le mutant *arp6-1* en faible concentration (0.5 mM) de nitrate et vous ferez l'analyse pour les autres comparaisons par vous même.
+
+## Préparation des données pour pouvoir faire l'analyse d'expression différentielle
+
+DESeq à besoin d'un object dans un format particulier pour fonctionner. Celui-ci contient les données d'expression ainsi que les informations sur les échantillons nécessaires à la comparaison.  
+Afin de créer cet objet il faut les informations suivantes:  
+- Le dossier dans lequel il y a les données d'expression, avec un fichier par échantillon  
+- Le fichier contenant les informations des échantillons (génotype, condition environnementale)  
 
 
+- Nous créons cet objet avec le code suivant:
 ```{r, message=FALSE, results='hide'}
 
-#directory <- "counts_HTSeqCoun_extremes/"
+# Définition du dossier contenant les données d'expression pour tous 
+# les échantillons de la comparaison analysée 
 
-#sampleFiles <- list.files(directory)
-#sampleCondition <- read_table("SC18_data_info_high_low.txt")
-#sampleTable <- data.frame(sampleName = sampleFiles,
-#                          fileName = sampleFiles,
- #                         condition = sampleCondition)
-#sampleTable$condition <- factor(sampleTable$condition.type)
+directory_0.5mM <- "../../../0.5mM_WT_vs_arp6/"
+sampleFiles_0.5mM <- list.files(directory_0.5mM)
 
-#ddsHTSeq <- DESeqDataSetFromHTSeqCount(sampleTable = sampleTable,
-#                                       directory = directory,
-#                                       design= ~ condition)
-#ddsHTSeq
+# Chargement du fichier contenant les information sur les échantillons
+sampleCondition_0.5mM <- read_table("../../../Data_info_WT_arp6_0.5mM.txt")
+
+# Création d'un objet combinant le nom des fichier des échantillons et 
+# les informations sur ces échantillons
+sampleTable_0.5mM <- data.frame(sampleName = sampleFiles_0.5mM,
+                          fileName = sampleFiles_0.5mM,
+                          condition = sampleCondition_0.5mM)
+sampleTable_0.5mM$condition <- factor(sampleTable_0.5mM$condition.genotype)
+
+# Vérifier que tout est bon à cette étape avec la commande:
+View(sampleTable_0.5mM)
+
+
+# Création de l'objet spécifique à DESeq:
+ddsHTSeq_0.5mM <- DESeqDataSetFromHTSeqCount(sampleTable = sampleTable_0.5mM,
+                                       directory = directory_0.5mM,
+                                       design= ~ condition)
+ddsHTSeq_0.5mM
+
+```
+
+<br>
+
+- Maintenant, nous suppressimons les gènes non exprimés ou faiblement exprimés. La présence de ces gènes peut poser problème lors de la détection de gènes différentiellement exprimés. Pour cela nous utilisons les commander suivantes:
+```{r}
+
+keep_0.5mM <- rowSums(counts(ddsHTSeq_0.5mM)) >= 4
+ddsHTSeq_0.5mM <- ddsHTSeq_0.5mM[keep_0.5mM,]
+
+keep2_0.5mM <- rowSums(counts(ddsHTSeq_0.5mM)<0.0001) < 3
+ddsHTSeq_0.5mM <- ddsHTSeq_0.5mM[keep2_0.5mM,]
+
+```
+
+<br>
+
+- DESeq doit savoir quelle est la condition de référence, et quelle est la condition que nous comparons à cette référence. Ceci se fait avec la fonction suivante: 
+```{r}
+
+ddsHTSeq_0.5mM$condition <- relevel(ddsHTSeq_0.5mM$condition, ref = "WT")
 
 ```
 
 
+## Analyse d'expression différentielle
 
+Maintenant que tout est préparé, nous pouvons enfin effectuer l'analyse d'expression différentielle. Cette analyse intègre une normalisation des données pour corriger pour la taille de la librarie (raison pour laquelle nous n'avons pas besoin de le faire comme à la séance précédente).  
+Ensuite DESeq va effectuer un test statistique afin de définir si chaque gène est différentiellement exprimé. Ce test est fait en partant du principe que la majorité des gènes ne changent pas d'expression entre les deux conditions. Il va attribuer une p-value ajustée (en utilisant la méthode de benjamini-hochberg) pour tenir compte du fait qu'un nombre important de tests statistiques sont effectués (un test par gène sachat qu'il y a plus de 20000 gènes). 
+
+
+- L'analyse d'expression différentielle est effectuée avec la fonction suivante:
+```{r, message=FALSE}
+dds_0.5mM <- DESeq(ddsHTSeq_0.5mM)
+
+```
+
+
+- Maintenant nous pouvons ajouter un seuil pour la p-value ajustée à 5%. Les gènes avec une p-value ajustée sous cette valeur sont différentiellement exprimés. 
+```{r}
+res_0.5mM <- results(dds_0.5mM, alpha=0.05)
+res_0.5mM
+```
+
+
+- Afin de connaitre le nombre de gènes différentiellement exprimés pour cette comparaison nous faisons:
+```{r}
+sum(res_0.5mM$padj < 0.05, na.rm=TRUE)
+```
+
+- Pour visualiser l'analyse d'expression différentielle nous utilisons un graphique MA:
+```{r}
+plotMA(res_0.5mM, ylim=c(-2,2))
+```
+
+
+
+Ce graphique représente la différence d'expression entre les deux conditions en fonction de l'expression moyenne pour chaque gène. Les gènes différentiellement exprimés sont en bleu.
+
+> Que pensez-vous de ce graphique?  
+> Est-ce que la détection de gènes différentiellement exprimé est la même 
+peut importe le niveau d'expression?  
+> Pensez-vous que le seuil à 5% est cohérent ou devrions nous utiliser un seuil 
+plus (1%) ou moins (10%) stringeant?
+
+
+- Nous allons maintenant récupérer le résultat de DESeq dans un objet de format data.frame, qui nous permettra de faire des analyses sur ces gènes:
+```{r}
+resOrdered_0.5mM <- res_0.5mM[order(res_0.5mM$padj),]
+resOrdered_0.5mM
+
+DESeq_result_0.5mM <- as.data.frame(resOrdered_0.5mM) %>% 
+  rownames_to_column(var="gene")
+```
+
+- Regarder le résultat avec la fonction suivante. 
+```{r}
+View(DESeq_result_0.5mM)
+```
+
+> Est-ce que le gène *ARP6* est bien différentiellement exprimé?
+
+- Finalement, exportez le résultat afin de les conserver sans avoir à refaire toute l'analyse:
+```{r}
+write_tsv(DESeq_result_0.5mM, file="DEseq_0.5mM_WT_vs_arp6.txt")
+```
+
+# Détection de gènes différentiellement exprimés pour les 3 autres comparaisons
+
+> Recopiez le code ci-dessus pour détecter les gènes différentiellement exprimés pour 
+les 3 autres comparaisons suivantes:
+- - WT vs arp6-1 en forte concentration (10 mM) de nitrate
+- Faible concentration (0.5 mM) vs forte concentration (10 mM) de nitrate chez le WT
+- Faible concentration (0.5 mM) vs forte concentration (10 mM) de nitrate chez le mutant arp6-1
+
+
+**Attention! N'oubliez pas de nommer les objets différemment pour chaque comparaison afin de ne pas écraser les résultats de l'analyse précédente.**
 
