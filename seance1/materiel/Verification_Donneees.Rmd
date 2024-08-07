@@ -144,12 +144,12 @@ CPMnorm_RNAseq_data_expressed <-  filter(CPMnorm_RNAseq_data,
 ```
 
 
-- Nous pouvons maintenant effectuer l'ACP (notez que nous utilisons l'option afin d'avoir des données réduites (écart type de 1) et centrées autour de zéro). Pour cela nous utilisons la fonction suivante:
+- Nous pouvons maintenant effectuer l'ACP (notez que nous utilisons les options `scale. = TRUE` et  `center = TRUE` afin d'avoir des données réduites (écart type de 1) et centrées autour de zéro). Pour cela nous utilisons la fonction suivante:
 ```{r}
 pca_res_CPMnorm_RNAseq_data_expressed <- prcomp(t(CPMnorm_RNAseq_data_expressed),
                                                 scale. = TRUE, center = TRUE) 
 ```
-Nous faisons l'ACP sur les données transformées `t()`, avec les gènes en colonne et les échantillons en ligne, car nous souhaitons analyser les échantillons à l'aide de l'information donnée par les gènes. Nous aurions gardé les données telle quelle si nous avions voulu représenter les gènes analysés en fonction de l'information des échantillons (ce que je ne recommande pas car dans ce cas nous avions trop peu de variables explicatives (12 échantillons) par rapport au nombre de gènes (autour de 20000 gènes)).
+Nous faisons l'ACP sur les données transformées `t()` avec les gènes en colonne et les échantillons en ligne, car nous souhaitons analyser les échantillons à l'aide de l'information donnée par les gènes. Nous aurions gardé les données telle quelle si nous avions voulu représenter les gènes analysés en fonction de l'information des échantillons (ce que je ne recommande pas car dans ce cas nous avons trop peu de variables explicatives (12 échantillons) par rapport au nombre de gènes (autour de 20000 gènes)).
 
 
 
@@ -167,17 +167,23 @@ Nous voyons que les deux première dimensions de l'ACP expliquent environ 50% de
 fviz_pca_ind(pca_res_CPMnorm_RNAseq_data_expressed, pointsize=3)
 
 ```
-Il est difficile de lire cette ACP.
+
+Il est difficile de comprendre cette ACP car le texte n'est pas très lisible.
 
 - Afin de faciliter l'interprétation de l'ACP, ajoutons un code couleur pour les échantillons:
 ```{r, message=FALSE}
-# chargement d'un tableau expliquant à quel génotype et quelle condition environnementale correspond chaque échantillon
+# chargement d'un tableau expliquant à quel génotype et quelle 
+# condition environnementale correspond chaque échantillon
+
 data_info <- read_tsv("../../../Data_info.txt")
 
 
-# col.ind=data_info$genotype_KNO3 permet d'ajouter le code couleur
-# repel=TRUE permet de faire un sorte que le texte soit lisible pour tous les échantillons
-# invisible="quali" permet d'enlever la moyenne de chaque groupe
+# Maintenant refaisons l'ACP avec le code couleur en utilisant 
+# les paramères suivants:
+# col.ind=data_info$genotype_KNO3 pour ajouter le code couleur
+# repel=TRUE pour faire un sorte que le texte soit lisible 
+# invisible="quali" pour enlever la moyenne de chaque groupe
+
 fviz_pca_ind(pca_res_CPMnorm_RNAseq_data_expressed, 
              pointsize=3, col.ind=data_info$genotype_KNO3,  
              repel=TRUE, invisible="quali") 
@@ -203,7 +209,7 @@ Les gènes pour lesquels nous savons qu'elle doit être l'expression dans les é
 > Pour faire le graphique pour chaque gène, suivez les étapes ci-dessous:  
 > - Passer le nom des lignes en une colonne "gene" à l'aide de la fonction `rownames_to_column`  
 > - Ne garder que la ligne pour notre gène d'intérêt en utilisant la fonction `filter`  
-> - Transformer le format de manière à avoir une colonne avec le nom de l'échantillon et une colonne avec les valeurs d'expression en utilisant `pivot_longer`  
+> - Transformer le format de manière à avoir une colonne avec le nom de l'échantillon et une colonne avec les valeurs d'expression plutôt qu'une colonne par échantillon en utilisant `pivot_longer`  
 > - Séparez la colonne des échantillons de manière à avoir 3 nouvelle colonnes: une pour le génotype, une pour la condition en nitrate et une pour le réplicat. Pour cela utilisez la fonction `separate`  
 > - Utilisez `ggplot` pour faire un graphique avec l'expression du gène en fonction du génotype et les points colorés en fonction de la condition en nitrate  
 
