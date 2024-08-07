@@ -1533,27 +1533,31 @@ différentiellement exprimés. Pour cela vous allez utiliser le package
 vers la notice complete de DESeq2</a>. Nous n’allons utiliser qu’une
 partie des fonctionnalités de DESeq2, et je vous recommande de regarder
 les autres possibilités offertes par ce package spécialisé dans
-la’analyse de données RNAseq.</p>
+l’analyse de données RNAseq.</p>
 <div id="préparation-de-lenvironnement" class="section level1">
 <h1>Préparation de l’environnement</h1>
 <ul>
 <li>Dans un premier temps, créez un nouveau R markdown (ou réutilisez
-celui de la séance précédente) et chargez les libraries dont vous aurez
+celui de la séance précédente) et chargez les librairies dont vous aurez
 besoin.</li>
 </ul>
 <p>Voici la liste des libraries dont vous aurez besoin:<br />
 - tidyverse<br />
 - DESeq2</p>
 <p><br></p>
-<p><strong>Avec DESeq2 nous detections les gènes différentiellement
-exprimés entre 2 conditions. Nous allons donc devoir faire l’analyse
-pour chacune des comparaisons suivantes:</strong><br />
-<strong>- WT vs arp6-1 en faible concentration (0.5 mM) de
-nitrate</strong> <strong>- WT vs arp6-1 en forte concentration (10 mM)
-de nitrate</strong> <strong>- Faible concentration (0.5 mM) vs forte
-concentration (10 mM) de nitrate chez le WT</strong> <strong>- Faible
-concentration (0.5 mM) vs forte concentration (10 mM) de nitrate chez le
-mutant arp6-1</strong></p>
+<p><strong>Avec <code>DESeq2</code> nous detections les gènes
+différentiellement exprimés entre 2 conditions. Nous allons donc devoir
+faire l’analyse pour chacune des comparaisons suivantes:</strong><br />
+<strong>- <code>WT</code> vs <code>arp6-1</code> en faible concentration
+(0.5 mM) de nitrate</strong><br />
+<strong>- <code>WT</code> vs <code>arp6-1</code> en forte concentration
+(10 mM) de nitrate</strong><br />
+<strong>- <code>Faible concentration</code> (0.5 mM) vs
+<code>forte concentration</code> (10 mM) de nitrate chez le
+WT</strong><br />
+<strong>- <code>Faible concentration</code> (0.5 mM) vs
+<code>forte concentration</code> (10 mM) de nitrate chez le mutant
+arp6-1</strong></p>
 </div>
 <div id="détection-de-gènes-différentiellement-exprimés-entre-wt-vs-arp6-1-en-faible-concentration-0.5-mm-de-nitrate" class="section level1">
 <h1>Détection de gènes différentiellement exprimés entre WT vs arp6-1 en
