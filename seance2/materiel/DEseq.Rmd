@@ -9,22 +9,62 @@ output: rmdformats::downcute
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+<br>
+<br>
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+Dans cette séance; vous allez effectuer une détection de gènes différentiellement exprimés. Pour cela vous allez utiliser le package `DESeq2`. Voici le [lien vers la notice complete de DESeq2](https://www.bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html). Nous n'allons utiliser qu'une partie des fonctionnalités de DESeq2, et je vous recommande de regarder les autres possibilités offertes par ce package spécialisé dans la'analyse de données RNAseq.
 
-```{r cars}
-summary(cars)
+
+# Préparation de l'environnement
+
+- Dans un premier temps, créez un nouveau R markdown (ou réutilisez celui de la séance précédente), chargez les libraries dont vous aurez besoin.  
+
+Voici la liste des libraries dont vous aurez besoin:  
+- tidyverse  
+- DESeq2
+
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(DESeq2)
+
+RNAseq_data <- read_tsv("../../../Raw_featureCounts_WT_arp6.txt")
 ```
 
-## Including Plots
+<br>
 
-You can also embed plots, for example:
+*Avec DESeq2 nous detections les gènes différentiellement exprimés entre 2 conditions. Nous allons donc devoir faire l'analyse pour chacune des paires suivantes:*  
+*- WT vs arp6-1 en faible concentration (0.5 mM) de nitrate*
+*- WT vs arp6-1 en forte concentration (10 mM) de nitrate*
+*- Faible concentration (0.5 mM) vs forte concentration (10 mM) de nitrate chez le WT*
+*- Faible concentration (0.5 mM) vs forte concentration (10 mM) de nitrate chez le mutant arp6-1*
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+# 
+
+
+# Creation de l'objet au format nécessaire à DESeq
+
+
+```{r, message=FALSE, results='hide'}
+
+#directory <- "counts_HTSeqCoun_extremes/"
+
+#sampleFiles <- list.files(directory)
+#sampleCondition <- read_table("SC18_data_info_high_low.txt")
+#sampleTable <- data.frame(sampleName = sampleFiles,
+#                          fileName = sampleFiles,
+ #                         condition = sampleCondition)
+#sampleTable$condition <- factor(sampleTable$condition.type)
+
+#ddsHTSeq <- DESeqDataSetFromHTSeqCount(sampleTable = sampleTable,
+#                                       directory = directory,
+#                                       design= ~ condition)
+#ddsHTSeq
+
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+
