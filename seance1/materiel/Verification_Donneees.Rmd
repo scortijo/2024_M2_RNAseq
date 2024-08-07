@@ -58,7 +58,7 @@ library(factoextra)
 
 - Enfin, chargez les données et mettez les dans un objet à l'aide du code suivant (modifiez en fonction du chemin vers votre fichier):
 ```{r, message=FALSE}
-RNAseq_data <- read_tsv("../../../Raw_featureCounts_WT_arp6.txt")
+RNAseq_data <- read_tsv("../../../data/Raw_featureCounts_WT_arp6.txt")
 
 RNAseq_data
 ```
@@ -175,7 +175,7 @@ Il est difficile de comprendre cette ACP car le texte n'est pas très lisible.
 # chargement d'un tableau expliquant à quel génotype et quelle 
 # condition environnementale correspond chaque échantillon
 
-data_info <- read_tsv("../../../Data_info.txt")
+data_info <- read_tsv("../../../data/Data_info.txt")
 
 
 # Maintenant refaisons l'ACP avec le code couleur en utilisant 

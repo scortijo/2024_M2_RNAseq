@@ -1586,7 +1586,7 @@ fonction suivante (exemple pour une librarie).</p></li>
 <li>Enfin, chargez les données et mettez les dans un objet à l’aide du
 code suivant (modifiez en fonction du chemin vers votre fichier):</li>
 </ul>
-<pre class="r"><code>RNAseq_data &lt;- read_tsv(&quot;../../../Raw_featureCounts_WT_arp6.txt&quot;)
+<pre class="r"><code>RNAseq_data &lt;- read_tsv(&quot;../../../data/Raw_featureCounts_WT_arp6.txt&quot;)
 
 RNAseq_data</code></pre>
 <pre><code>## # A tibble: 36,795 × 13
@@ -1747,7 +1747,7 @@ couleur pour les échantillons:</li>
 <pre class="r"><code># chargement d&#39;un tableau expliquant à quel génotype et quelle 
 # condition environnementale correspond chaque échantillon
 
-data_info &lt;- read_tsv(&quot;../../../Data_info.txt&quot;)
+data_info &lt;- read_tsv(&quot;../../../data/Data_info.txt&quot;)
 
 
 # Maintenant refaisons l&#39;ACP avec le code couleur en utilisant 
