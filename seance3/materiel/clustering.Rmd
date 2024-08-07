@@ -15,7 +15,66 @@ knitr::opts_chunk$set(echo = TRUE)
 Dans cette séance, vous allez explorer les gènes différentiellement exprimés pour détecter des groupes de gènes d'intérêt.   
 Dans un premier temps, vous allez regrouper tous les gènes différentiellement exprimés dans les différentes comparaisons. Puis vous allez effectuer un clustering hierarchisé pour identifier les gènes avec des expression similaires dans les différents échantillons.
 
+
+# Préparation de l'environnement
+
+> Dans un premier temps, créez un nouveau R markdown (ou réutilisez celui de la séance précédente) et chargez les librairies dont vous aurez besoin.  
+
+Voici la liste des libraries dont vous aurez besoin:  
+- tidyverse  
+-   
+
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+
+```
+
+> Importez tous les fichiers contenant les résultats de DESeq pour chaque comparaison et mettez les dans des objets   
+> Importez aussi le fichier contenant les données d'expression 
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+
+DESeq_result_arp6 <- read_tsv("../../../data/tables_DEG/DEseq_arp6_0.5mM_vs_10mM.txt")
+DESeq_result_WT <- read_tsv("../../../data/tables_DEG/DEseq_WT_0.5mM_vs_10mM.txt")
+DESeq_result_0.5mM <- read_tsv("../../../data/tables_DEG/DEseq_0.5mM_WT_vs_arp6.txt")
+DESeq_result_10mM <- read_tsv("../../../data/tables_DEG/DEseq_10mM_WT_vs_arp6.txt")
+
+RNAseq_data <- read_tsv("../../../data/Raw_featureCounts_WT_arp6.txt")
+
+
+```
+
+
 # Regroupement de tous les gènes différentiellement exprimés.
+
+Afin de pouvoir trouver des groupes de gènes avec des expressions d'intérêt dans les différents échantillons, il nous faut tout d'abord regrouper tous les gènes différentiellement exprimés et avoir leur expression dans les différents échantillons.
+
+
+
+```{r}
+DESeq_result_arp6 <- select(DESeq_result_arp6, gene, padj ) %>% 
+  rename(padj="padj_arp6_0.5mM_vs_10mM")
+
+DESeq_result_WT <- select(DESeq_result_WT, gene, padj ) %>% 
+  rename(padj="padj_WT_0.5mM_vs_10mM")
+
+DESeq_result_0.5mM <- select(DESeq_result_0.5mM, gene, padj ) %>% 
+  rename(padj="padj_0.5mM_WT_vs_arp6")
+
+DESeq_result_10mM <- select(DESeq_result_10mM, gene, padj ) %>% 
+  rename(padj="padj_10mM_WT_vs_arp6")
+
+
+
+full_join(DESeq_result_arp6, DESeq_result_WT, by="gene") %>% 
+  full_join(DESeq_result_0.5mM, by="gene") %>% 
+  full_join(DESeq_result_10mM, by="gene")
+
+```
+
 
 
 

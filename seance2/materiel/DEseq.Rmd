@@ -86,18 +86,6 @@ ddsHTSeq_0.5mM
 
 <br>
 
-- Maintenant, nous supprimons les gènes non exprimés ou faiblement exprimés. La présence de ces gènes peut poser problème lors de la détection de gènes différentiellement exprimés. Pour cela nous utilisons les commandes suivantes:
-```{r}
-
-keep_0.5mM <- rowSums(counts(ddsHTSeq_0.5mM)) >= 4
-ddsHTSeq_0.5mM <- ddsHTSeq_0.5mM[keep_0.5mM,]
-
-keep2_0.5mM <- rowSums(counts(ddsHTSeq_0.5mM)<0.0001) < 3
-ddsHTSeq_0.5mM <- ddsHTSeq_0.5mM[keep2_0.5mM,]
-
-```
-
-<br>
 
 - DESeq doit savoir quelle est la condition de référence, et quelle est la condition que nous comparons à cette référence. Ceci se fait avec la fonction suivante: 
 ```{r}
@@ -205,11 +193,6 @@ ddsHTSeq_10mM <- DESeqDataSetFromHTSeqCount(sampleTable = sampleTable_10mM,
                                        directory = directory_10mM,
                                        design= ~ condition)
 
-keep_10mM <- rowSums(counts(ddsHTSeq_10mM)) >= 4
-ddsHTSeq_10mM <- ddsHTSeq_10mM[keep_10mM,]
-
-keep2_10mM <- rowSums(counts(ddsHTSeq_10mM)<0.0001) < 3
-ddsHTSeq_10mM <- ddsHTSeq_10mM[keep2_10mM,]
 
 ddsHTSeq_10mM$condition <- relevel(ddsHTSeq_10mM$condition, ref = "WT")
 
@@ -243,11 +226,6 @@ ddsHTSeq_WT <- DESeqDataSetFromHTSeqCount(sampleTable = sampleTable_WT,
                                        directory = directory_WT,
                                        design= ~ condition)
 
-keep_WT <- rowSums(counts(ddsHTSeq_WT)) >= 4
-ddsHTSeq_WT <- ddsHTSeq_WT[keep_WT,]
-
-keep2_WT <- rowSums(counts(ddsHTSeq_WT)<0.0001) < 3
-ddsHTSeq_WT <- ddsHTSeq_WT[keep2_WT,]
 
 ddsHTSeq_WT$condition <- relevel(ddsHTSeq_WT$condition, ref = "0.5mM")
 
@@ -281,11 +259,6 @@ ddsHTSeq_arp6 <- DESeqDataSetFromHTSeqCount(sampleTable = sampleTable_arp6,
                                        directory = directory_arp6,
                                        design= ~ condition)
 
-keep_arp6 <- rowSums(counts(ddsHTSeq_arp6)) >= 4
-ddsHTSeq_arp6 <- ddsHTSeq_arp6[keep_arp6,]
-
-keep2_arp6 <- rowSums(counts(ddsHTSeq_arp6)<0.0001) < 3
-ddsHTSeq_arp6 <- ddsHTSeq_arp6[keep2_arp6,]
 
 ddsHTSeq_arp6$condition <- relevel(ddsHTSeq_arp6$condition, ref = "0.5mM")
 
