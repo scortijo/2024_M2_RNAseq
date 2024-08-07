@@ -1491,9 +1491,9 @@ margin-left: 0 !important;
             <ul>
             <li><a href="#préparation-de-lenvironnement" id="toc-préparation-de-lenvironnement">Préparation de
             l’environnement</a></li>
-            <li><a href="#détection-de-gènes-différentiellement-exprimés-entre-wt-vs-arp6-1-en-faible-concentration-0.5-mm-de-nitrate" id="toc-détection-de-gènes-différentiellement-exprimés-entre-wt-vs-arp6-1-en-faible-concentration-0.5-mm-de-nitrate">Détection
-            de gènes différentiellement exprimés entre WT vs arp6-1 en
-            faible concentration (0.5 mM) de nitrate</a>
+            <li><a href="#détection-de-gènes-différentiellement-exprimés-entre-wt-et-le-mutant-arp6-1-en-faible-concentration-0.5-mm-de-nitrate" id="toc-détection-de-gènes-différentiellement-exprimés-entre-wt-et-le-mutant-arp6-1-en-faible-concentration-0.5-mm-de-nitrate">Détection
+            de gènes différentiellement exprimés entre WT et le mutant
+            arp6-1 en faible concentration (0.5 mM) de nitrate</a>
             <ul>
             <li><a href="#préparation-des-données-pour-pouvoir-faire-lanalyse-dexpression-différentielle" id="toc-préparation-des-données-pour-pouvoir-faire-lanalyse-dexpression-différentielle">Préparation
             des données pour pouvoir faire l’analyse d’expression
@@ -1559,13 +1559,13 @@ WT</strong><br />
 <code>forte concentration</code> (10 mM) de nitrate chez le mutant
 arp6-1</strong></p>
 </div>
-<div id="détection-de-gènes-différentiellement-exprimés-entre-wt-vs-arp6-1-en-faible-concentration-0.5-mm-de-nitrate" class="section level1">
-<h1>Détection de gènes différentiellement exprimés entre WT vs arp6-1 en
-faible concentration (0.5 mM) de nitrate</h1>
+<div id="détection-de-gènes-différentiellement-exprimés-entre-wt-et-le-mutant-arp6-1-en-faible-concentration-0.5-mm-de-nitrate" class="section level1">
+<h1>Détection de gènes différentiellement exprimés entre WT et le mutant
+arp6-1 en faible concentration (0.5 mM) de nitrate</h1>
 <p>Nous allons faire ensemble la détection de gènes différentiellement
 exprimés entre WT et le mutant <em>arp6-1</em> en faible concentration
 (0.5 mM) de nitrate et vous ferez l’analyse pour les autres comparaisons
-par vous même.</p>
+par vous-même.</p>
 <div id="préparation-des-données-pour-pouvoir-faire-lanalyse-dexpression-différentielle" class="section level2">
 <h2>Préparation des données pour pouvoir faire l’analyse d’expression
 différentielle</h2>
@@ -1573,8 +1573,8 @@ différentielle</h2>
 fonctionner. Celui-ci contient les données d’expression ainsi que les
 informations sur les échantillons nécessaires à la comparaison.<br />
 Afin de créer cet objet il faut les informations suivantes:<br />
-- Le dossier dans lequel il y a les données d’expression, avec un
-fichier par échantillon<br />
+- Le dossier dans lequel il y a les données d’expression (avec un
+fichier d’expression par échantillon)<br />
 - Le fichier contenant les informations des échantillons (génotype,
 condition environnementale)</p>
 <ul>
@@ -1589,14 +1589,14 @@ sampleFiles_0.5mM &lt;- list.files(directory_0.5mM)
 # Chargement du fichier contenant les information sur les échantillons
 sampleCondition_0.5mM &lt;- read_table(&quot;../../../Data_info_WT_arp6_0.5mM.txt&quot;)
 
-# Création d&#39;un objet combinant le nom des fichier des échantillons et 
+# Création d&#39;un objet combinant le nom des fichiers des échantillons et 
 # les informations sur ces échantillons
 sampleTable_0.5mM &lt;- data.frame(sampleName = sampleFiles_0.5mM,
                           fileName = sampleFiles_0.5mM,
                           condition = sampleCondition_0.5mM)
 sampleTable_0.5mM$condition &lt;- factor(sampleTable_0.5mM$condition.genotype)
 
-# Vérifier que tout est bon à cette étape avec la commande:
+# Vérifiez que tout est bon à cette étape avec la commande:
 View(sampleTable_0.5mM)
 
 
@@ -1607,10 +1607,10 @@ ddsHTSeq_0.5mM &lt;- DESeqDataSetFromHTSeqCount(sampleTable = sampleTable_0.5mM,
 ddsHTSeq_0.5mM</code></pre>
 <p><br></p>
 <ul>
-<li>Maintenant, nous suppressimons les gènes non exprimés ou faiblement
+<li>Maintenant, nous supprimons les gènes non exprimés ou faiblement
 exprimés. La présence de ces gènes peut poser problème lors de la
 détection de gènes différentiellement exprimés. Pour cela nous utilisons
-les commander suivantes:</li>
+les commandes suivantes:</li>
 </ul>
 <pre class="r"><code>keep_0.5mM &lt;- rowSums(counts(ddsHTSeq_0.5mM)) &gt;= 4
 ddsHTSeq_0.5mM &lt;- ddsHTSeq_0.5mM[keep_0.5mM,]
@@ -1637,8 +1637,8 @@ gène est différentiellement exprimé. Ce test est fait en partant du
 principe que la majorité des gènes ne changent pas d’expression entre
 les deux conditions. Il va attribuer une p-value ajustée (en utilisant
 la méthode de benjamini-hochberg) pour tenir compte du fait qu’un nombre
-important de tests statistiques sont effectués (un test par gène sachat
-qu’il y a plus de 20000 gènes).</p>
+important de tests statistiques sont effectués (un test par gène sachant
+qu’il y a environ 20000 gènes).</p>
 <ul>
 <li>L’analyse d’expression différentielle est effectuée avec la fonction
 suivante:</li>
@@ -1646,7 +1646,7 @@ suivante:</li>
 <pre class="r"><code>dds_0.5mM &lt;- DESeq(ddsHTSeq_0.5mM)</code></pre>
 <ul>
 <li>Maintenant nous pouvons ajouter un seuil pour la p-value ajustée à
-5%. Les gènes avec une p-value ajustée sous cette valeur sont
+5%. Les gènes avec une p-value ajustée inférieure à cette valeur sont
 différentiellement exprimés.</li>
 </ul>
 <pre class="r"><code>res_0.5mM &lt;- results(dds_0.5mM, alpha=0.05)
@@ -1684,7 +1684,7 @@ conditions en fonction de l’expression moyenne pour chaque gène. Les
 gènes différentiellement exprimés sont en bleu.</p>
 <blockquote>
 <p>Que pensez-vous de ce graphique?<br />
-Est-ce que la détection de gènes différentiellement exprimé est la même
+Est-ce que la détection de gènes différentiellement exprimés est la même
 peut importe le niveau d’expression?<br />
 Pensez-vous que le seuil à 5% est cohérent ou devrions nous utiliser un
 seuil plus (1%) ou moins (10%) stringeant?</p>
@@ -1728,7 +1728,8 @@ resOrdered_0.5mM</code></pre>
 <pre class="r"><code>DESeq_result_0.5mM &lt;- as.data.frame(resOrdered_0.5mM) %&gt;% 
   rownames_to_column(var=&quot;gene&quot;)</code></pre>
 <ul>
-<li>Regarder le résultat avec la fonction suivante.</li>
+<li>Regardez le tableau avec les données d’analyse d’expression
+différentielle avec la fonction suivante.</li>
 </ul>
 <pre class="r"><code>View(DESeq_result_0.5mM)</code></pre>
 <blockquote>
@@ -1736,7 +1737,7 @@ resOrdered_0.5mM</code></pre>
 exprimé?</p>
 </blockquote>
 <ul>
-<li>Finalement, exportez le résultat afin de les conserver sans avoir à
+<li>Finalement, exportez le résultat afin de le conserver sans avoir à
 refaire toute l’analyse:</li>
 </ul>
 <pre class="r"><code>write_tsv(DESeq_result_0.5mM, file=&quot;DEseq_0.5mM_WT_vs_arp6.txt&quot;)</code></pre>
@@ -1747,7 +1748,7 @@ refaire toute l’analyse:</li>
 comparaisons</h1>
 <blockquote>
 <p>Recopiez le code ci-dessus pour détecter les gènes différentiellement
-exprimés pour les 3 autres comparaisons suivantes: - - WT vs arp6-1 en
+exprimés pour les 3 autres comparaisons suivantes: - WT vs arp6-1 en
 forte concentration (10 mM) de nitrate - Faible concentration (0.5 mM)
 vs forte concentration (10 mM) de nitrate chez le WT - Faible
 concentration (0.5 mM) vs forte concentration (10 mM) de nitrate chez le
