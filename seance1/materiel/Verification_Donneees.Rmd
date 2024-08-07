@@ -84,7 +84,7 @@ vis_dat(RNAseq_data)
 ```
 Nous voyons ici que le format des données est attendu:  
 - Il n'y a pas de données manquantes.  
-- La colonne avec le nom des gène est bien du texte.  
+- La colonne avec le nom des gènes est bien du texte.  
 - Les colonnes avec les valeurs d'expression sont bien numériques.  
 
 
@@ -134,7 +134,7 @@ CPMnorm_RNAseq_data_expressed <-  filter( CPMnorm_RNAseq_data,
 
 
 
-> En suivant la même logique, enlevez aussi les gènes les gènes faiblement exprimés (avec une moyenne d'expression inférieure à 2). Dans ce cas, utilisez `rowMeans` à la place de `rowSums`.
+> En suivant la même logique, enlevez aussi les gènes faiblement exprimés (avec une moyenne d'expression inférieure à 2). Dans ce cas, utilisez `rowMeans` à la place de `rowSums`.
 
 ```{r, echo=FALSE}
 CPMnorm_RNAseq_data_expressed <-  filter(CPMnorm_RNAseq_data, 
