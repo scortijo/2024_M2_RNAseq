@@ -23,8 +23,8 @@ Afin de pouvoir faire ce cours sur votre ordinateur, téléchargez le matériel 
 
 <br>
 
-`ATTENTION!! Il est attendu que vous ayez un niveau entre débutant et intermédiaire en R pour pouvoir suivre convenablement le cours.`  
-`Si vous ne pensez pas avoir un niveau de R assez avancé, faites [ce cours en ligne](https://scortijo.github.io/2023_L3_R/) avant la première séance (environ une dizaine d'heures requises).`   
+**ATTENTION!! Il est attendu que vous ayez un niveau entre débutant et intermédiaire en R pour pouvoir suivre convenablement le cours.**  
+**Si vous ne pensez pas avoir un niveau de R assez avancé, faites [ce cours en ligne](https://scortijo.github.io/2023_L3_R/) avant la première séance (environ une dizaine d'heures requises).**   
 
 
 <br>
