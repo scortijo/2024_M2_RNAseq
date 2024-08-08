@@ -230,8 +230,12 @@ write_tsv(Zscore_DEG_Mean3reps, file="../../../data/clusters_Zscore_DEG_Mean3rep
 
 <br>
 
-**A FAIRE POUR LA PROCHAINE SEANCE:**   
+**`A FAIRE POUR LA PROCHAINE SEANCE:`**   
 
-> A partir des résultats obtenus aujourd'hui, sélectionnez un (ou deux maximum) clusters que vous étudierez plus en détail à la prochaine séance. 
+**`A partir des résultats obtenus aujourd'hui, sélectionnez un (ou deux maximum) cluster que vous étudierez plus en détail à la prochaine séance. `**
 
+<br>
 
+<br>
+
+<br>
