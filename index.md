@@ -53,7 +53,7 @@ Dans cette séance vous allez détecter les gènes différentiellement exprimés
 
 <br>
 
-### Séance 3 (26/10/2023 13h15-16h30, salle TD5.129): Clustering des gènes 
+### Séance 3 (date, heure, salle): Clustering des gènes 
 
 Dans cette séance vous allez detecter des clusters de gènes avec des expressions similaires dans les différentes conditions
 
