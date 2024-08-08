@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 <br>
 
 Dans cette séance, vous allez explorer les gènes différentiellement exprimés pour détecter des groupes de gènes d'intérêt.   
-Dans un premier temps, vous allez regrouper tous les gènes différentiellement exprimés dans chacune des comparaisons. Puis vous allez effectuer un clustering hierarchique pour identifier les gènes avec des réponses transcriptionnelle interessantes en réponse à la mutation *arp6-1* et/ou à la concentration en azote dans le milieu de culture.
+Dans un premier temps, vous allez regrouper tous les gènes différentiellement exprimés dans chacune des comparaisons. Puis vous allez effectuer un clustering hierarchique pour identifier les gènes avec des réponses transcriptionnelle intéressantes en réponse à la mutation *arp6-1* et/ou à la concentration en azote dans le milieu de culture.
 
 
 # Préparation de l'environnement
@@ -102,8 +102,10 @@ tibble(CPMnorm_RNAseq_data)
 
 - Nous pouvons finalement combiner les données d'expression avec les gènes différentiellement exprimés dans au moins une comparaison:
 ```{r}
-All_DEG_CPMnorm_RNAseq_data <- inner_join(All_DEG, CPMnorm_RNAseq_data, by="gene") %>% 
-  select(-padj_arp6_0.5mM_vs_10mM, -padj_WT_0.5mM_vs_10mM, -padj_0.5mM_WT_vs_arp6, -padj_10mM_WT_vs_arp6)
+All_DEG_CPMnorm_RNAseq_data <- inner_join(All_DEG, CPMnorm_RNAseq_data, 
+                                          by="gene") %>% 
+  select(-padj_arp6_0.5mM_vs_10mM, -padj_WT_0.5mM_vs_10mM, 
+         -padj_0.5mM_WT_vs_arp6, -padj_10mM_WT_vs_arp6)
 ```
 
 <br>
@@ -113,7 +115,7 @@ Maintenant que nous avons les données d'expression pour tous les gènes différ
 
 # Clustering hiérarchique
 
-Afin de regrouper des gènes qui ont des expression similaires entre eux dans les différentes conditions, nous allons effectuer un clustering hierarchisé et représenter les résultats sous la forme d'une heatmap.  
+Afin de regrouper les gènes qui ont des expression similaires entre eux dans les différentes conditions, nous allons effectuer un clustering hierarchique et représenter les résultats sous la forme d'une heatmap.  
 
 Avant cela il nous faut effectuer une normalisation supplémentaire de l'expression des gènes afin de corriger pour leur niveau d'expression et d'écart type. En effet certains gènes sont fortement exprimés et d'autres faiblement exprimés. Si nous ne faisons aucune correction, les gènes fortement exprimés vont être regroupés ensemble et les gènes faiblement exprimés vont être regroupé ensemble. Or, ce qui nous interesse c'est de trouver par exemple tous les gènes qui ont une expression plus forte en faible concentration en azote et qui sont aussi affectés par la mutation *arp6-1*.  Pour cela la correction que nous allons faire est un [Zscore](https://www.bibmath.net/dico/index.php?action=affiche&quoi=./z/zscore.html) qui permet de corriger pour la moyenne et l'écart type de l'expression d'un gènes dans tous les échantillons.
 `Zscore= (Expression du gène - moyenne de l'expression de ce gène dans les échantillons)/ écart type de l'expression de ce gène dans les échantillons`
@@ -133,10 +135,10 @@ Zscore_All_DEG_CPMnorm_RNAseq_data <- mutate_at(All_DEG_CPMnorm_RNAseq_data, var
 ```{r}
 
 Zscore_DEG_Mean3reps <- mutate(Zscore_All_DEG_CPMnorm_RNAseq_data,
-                                                       Zscore_WT_0.5mM=rowMeans(Zscore_All_DEG_CPMnorm_RNAseq_data[,11:13]),
-                                                       Zscore_WT_10mM=rowMeans(Zscore_All_DEG_CPMnorm_RNAseq_data[,5:7]),
-                                                       Zscore_arp6_0.5mM=rowMeans(Zscore_All_DEG_CPMnorm_RNAseq_data[,2:4]),
-                                                       Zscore_arp6_10mM=rowMeans(Zscore_All_DEG_CPMnorm_RNAseq_data[,8:10])) %>% 
+                               Zscore_WT_0.5mM=rowMeans(Zscore_All_DEG_CPMnorm_RNAseq_data[,11:13]),
+                               Zscore_WT_10mM=rowMeans(Zscore_All_DEG_CPMnorm_RNAseq_data[,5:7]),
+                               Zscore_arp6_0.5mM=rowMeans(Zscore_All_DEG_CPMnorm_RNAseq_data[,2:4]),
+                               Zscore_arp6_10mM=rowMeans(Zscore_All_DEG_CPMnorm_RNAseq_data[,8:10])) %>% 
   select(gene, contains("Zscore")) %>% 
   rename_with(~ gsub("Zscore_", "", .x, fixed = TRUE))
   
@@ -150,18 +152,19 @@ Nous pouvons maintenant passer au clustering hiérarchique. Cela nous permet de 
 
 - Les différentes étapes pour effectuer le clustering hiérarchique sont dans le code ci-dessous:
 ```{r}
-# Calcul des correlations de pearson entre tous les gènes
+# Calcul des corrélations de pearson entre tous les gènes
 Zscore_DEG_Mean3reps.pearson <- cor(t(Zscore_DEG_Mean3reps[,2:5]), method = "pearson")
 Zscore_DEG_Mean3reps.pearson[is.na(Zscore_DEG_Mean3reps.pearson)]<-0
 
-# Creation du dendrograme à partie des distances euclidiennes mesurées avec la fonction `as.dist`
+# Création du dendrograme avec la fonction `hclust` à partir des distances
+# euclidiennes mesurées avec la fonction `as.dist`
 Zscore_DEG_Mean3reps.pearson.dist<-as.dist((1-Zscore_DEG_Mean3reps.pearson))
 Zscore_DEG_Mean3reps.pearson.dist[is.na(Zscore_DEG_Mean3reps.pearson.dist)]<-0
 Zscore_DEG_Mean3reps.pearson.dist.clust.complete <- hclust(Zscore_DEG_Mean3reps.pearson.dist, 
-                                                       method="complete")
+                                                           method="complete")
 Zscore_DEG_Mean3reps.pearson.dist.clust.complete.den <- as.dendrogram(Zscore_DEG_Mean3reps.pearson.dist.clust.complete)
 
-# Définition des clusters (ici nous cherchons 6 clusters)
+# Définition des clusters pour la heatmap (ici nous cherchons 6 clusters)
 Zscore_DEG_Mean3reps.pearson.dist.clust.complete.col=brewer.pal(12, 'Set3')[cutree(Zscore_DEG_Mean3reps.pearson.dist.clust.complete, k = 6)]
 
 # Ajout des clusters au tableau contenant les données d'expression
@@ -188,7 +191,7 @@ heatmap.2(as.matrix(Zscore_DEG_Mean3reps[,2:5]),
 
 
 > Que pensez vous de cette heatmap et du clustering hiérarchique?   
-> Est-ce que vosu pensez que 6 clusters soit le nombre adapté à nos données?   
+> Est-ce que vous pensez que 6 clusters soit le nombre adapté à nos données?   
 > Essayez un nombre de cluster plus bas et/ou plus faible. Trouvez-vous un nombre de clusters qui convienne mieux?
 
 
@@ -214,7 +217,7 @@ pivot_longer(Zscore_DEG_Mean3reps,  WT_0.5mM:arp6_10mM,
 > Faite une figure similaire sur vos données.   
 > Aide: Utilisez la fonction `pivot_longer` pour avoir une colonne avec le nom des échantillons 
 et une colonne avec les données d'expression, plutôt que une colonne par échantillon.   
-> Utilisez `separate` afin de séparer la colonne contenant le nom ces échantillons en deux colonnes: une avec le génotype, l'autre avec la concentration en KNO3.   
+> Utilisez `separate` afin de séparer la colonne contenant le nom des échantillons en deux colonnes: une avec le génotype, l'autre avec la concentration en KNO3.   
 > Utilisez `ggplot` pour représenter les données de l'expression des gènes en fonction du génotype et l'intérieur du boxplot coloré en fonction de la concentration en KNO3. Vous pouvez faire un panel par cluster en utilisant `facet_wrap`.   
 
 
