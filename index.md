@@ -55,7 +55,7 @@ Dans cette séance vous allez détecter les gènes différentiellement exprimés
 
 ### Séance 3 (date, heure, salle): Clustering des gènes 
 
-Dans cette séance vous allez detecter des clusters de gènes avec des expressions similaires dans les différentes conditions
+Dans cette séance vous allez détecter des clusters de gènes avec des expressions similaires dans les différentes conditions
 
 [Matériel clustering des gènes](seance3/materiel/clustering.html)  
 
@@ -64,6 +64,8 @@ Dans cette séance vous allez detecter des clusters de gènes avec des expressio
 <br>
 
 ### Séance 4 (date, heure, salle): Exploration des clusters et design de primers pour la validation en laboratoire
+
+Dans cette séance vous allez analyser plus en détail l'un des clusters identifiés à la séance précédente.
 
 [Matériel Exploration des clusters](seance4/materiel/reorganisation_suite.html)  
 
