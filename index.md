@@ -79,6 +79,9 @@ Dans cette séance vous allez analyser plus en détail l'un des clusters identif
 
 **L'évaluation de cette matière va se faire par une présentation orale des résultats que votre groupe aura obtenu**
 
+<br>
+
+---
 
 
 <br>
