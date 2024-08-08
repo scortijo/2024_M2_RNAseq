@@ -1,7 +1,3 @@
-**Où:** A définir
-
-**Quand:** A définir
-
 **Instructeurs:** 
 [Sandra Cortijo](mailto:sandra.cortijo@cnrs.fr), 
 [Mathieu Ingouff](mailto:Mathieu.Ingouff@ird.fr)
