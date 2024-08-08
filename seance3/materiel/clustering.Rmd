@@ -32,7 +32,6 @@ library(scTenifoldNet)
 library(matrixStats)
 library(RColorBrewer)
 library(gplots)
-
 ```
 
 > Importez tous les fichiers contenant les résultats de DESeq pour chaque comparaison et mettez les dans des objets   
@@ -60,23 +59,23 @@ Afin de pouvoir trouver des groupes de gènes avec des expressions d'intérêt d
 
 ```{r}
 DESeq_result_arp6 <- select(DESeq_result_arp6, gene, padj ) %>% 
-  rename(padj="padj_arp6_0.5mM_vs_10mM")
+  rename(padj_arp6_0.5mM_vs_10mM=padj)
 
 DESeq_result_WT <- select(DESeq_result_WT, gene, padj ) %>% 
-  rename(padj="padj_WT_0.5mM_vs_10mM")
+  rename(padj_WT_0.5mM_vs_10mM=padj)
 
 DESeq_result_0.5mM <- select(DESeq_result_0.5mM, gene, padj ) %>% 
-  rename(padj="padj_0.5mM_WT_vs_arp6")
+  rename(padj_0.5mM_WT_vs_arp6=padj)
 
 DESeq_result_10mM <- select(DESeq_result_10mM, gene, padj ) %>% 
-  rename(padj="padj_10mM_WT_vs_arp6")
+  rename(padj_10mM_WT_vs_arp6=padj)
 
 
 
 All_DEG <- full_join(DESeq_result_arp6, DESeq_result_WT, by="gene") %>% 
   full_join(DESeq_result_0.5mM, by="gene") %>% 
   full_join(DESeq_result_10mM, by="gene") %>% 
-  filter(padj_arp6_0.5mM_vs_10mM<0.05 | padj_WT_0.5mM_vs_10mM<0.05 | padj_0.5mM_WT_vs_arp6<0.05 |padj_10mM_WT_vs_arp6<0.05)
+  filter(padj_arp6_0.5mM_vs_10mM<0.01 | padj_WT_0.5mM_vs_10mM<0.01 | padj_0.5mM_WT_vs_arp6<0.01 |padj_10mM_WT_vs_arp6<0.01)
 
 ```
 
@@ -137,10 +136,10 @@ Zscore_All_DEG_CPMnorm_RNAseq_data_Mean3reps.pearson.dist[is.na(Zscore_All_DEG_C
 Zscore_All_DEG_CPMnorm_RNAseq_data_Mean3reps.pearson.dist.clust.complete <- hclust(Zscore_All_DEG_CPMnorm_RNAseq_data_Mean3reps.pearson.dist, 
                                                        method="complete")
 Zscore_All_DEG_CPMnorm_RNAseq_data_Mean3reps.pearson.dist.clust.complete.den <- as.dendrogram(Zscore_All_DEG_CPMnorm_RNAseq_data_Mean3reps.pearson.dist.clust.complete)
-Zscore_All_DEG_CPMnorm_RNAseq_data_Mean3reps.pearson.dist.clust.complete.col=brewer.pal(12, 'Set3')[cutree(Zscore_All_DEG_CPMnorm_RNAseq_data_Mean3reps.pearson.dist.clust.complete, k = 5)]
+Zscore_All_DEG_CPMnorm_RNAseq_data_Mean3reps.pearson.dist.clust.complete.col=brewer.pal(12, 'Set3')[cutree(Zscore_All_DEG_CPMnorm_RNAseq_data_Mean3reps.pearson.dist.clust.complete, k = 6)]
 Zscore_All_DEG_CPMnorm_RNAseq_data_Mean3reps$cluster_5_pearson <- cutree(Zscore_All_DEG_CPMnorm_RNAseq_data_Mean3reps.pearson.dist.clust.complete, 
-                                             k = 5)
-Zscore_All_DEG_CPMnorm_RNAseq_data_Mean3reps$cluster_5_pearson_color <- brewer.pal(12, 'Set3')[cutree(Zscore_All_DEG_CPMnorm_RNAseq_data_Mean3reps.pearson.dist.clust.complete, k = 5)]
+                                             k = 6)
+Zscore_All_DEG_CPMnorm_RNAseq_data_Mean3reps$cluster_5_pearson_color <- brewer.pal(12, 'Set3')[cutree(Zscore_All_DEG_CPMnorm_RNAseq_data_Mean3reps.pearson.dist.clust.complete, k = 6)]
 
 
 heatmap.2(as.matrix(Zscore_All_DEG_CPMnorm_RNAseq_data_Mean3reps[,2:5]),  
@@ -166,6 +165,26 @@ pivot_longer(Zscore_All_DEG_CPMnorm_RNAseq_data_Mean3reps,  WT_0.5mM:arp6_10mM,
   ggplot(aes(x=cluster_5_pearson, y=Zscore_mean3reps, fill=sample)) +
     geom_boxplot()
 
+
+pivot_longer(Zscore_All_DEG_CPMnorm_RNAseq_data_Mean3reps,  WT_0.5mM:arp6_10mM, 
+             names_to = "sample", values_to= "Zscore_mean3reps") %>% 
+  separate(sample, into=c("genotype", "KNO3"), sep="_") %>% 
+  mutate(genotype=factor(genotype, levels=c("WT", "arp6")),
+         KNO3=factor(KNO3, levels=c("0.5mM", "10mM")),
+         cluster_5_pearson=as.character(cluster_5_pearson)) %>% 
+  ggplot(aes(x=genotype, y=Zscore_mean3reps, fill=KNO3)) +
+    geom_boxplot() +
+  facet_wrap(~cluster_5_pearson) 
+
+pivot_longer(Zscore_All_DEG_CPMnorm_RNAseq_data_Mean3reps,  WT_0.5mM:arp6_10mM, 
+             names_to = "sample", values_to= "Zscore_mean3reps") %>% 
+  separate(sample, into=c("genotype", "KNO3"), sep="_") %>% 
+  mutate(genotype=factor(genotype, levels=c("WT", "arp6")),
+         KNO3=factor(KNO3, levels=c("0.5mM", "10mM")),
+         cluster_5_pearson=as.character(cluster_5_pearson)) %>% 
+  ggplot(aes(x=genotype, y=Zscore_mean3reps, fill=KNO3)) +
+    geom_violin() +
+  facet_wrap(~cluster_5_pearson) 
 
 ```
 
