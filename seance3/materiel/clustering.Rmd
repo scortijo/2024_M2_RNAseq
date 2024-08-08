@@ -58,7 +58,7 @@ RNAseq_data <- read_tsv("../../../data/Raw_featureCounts_WT_arp6.txt")
 Afin de pouvoir trouver des groupes de gènes avec des expressions d'intérêt dans les différents échantillons, il nous faut tout d'abord regrouper tous les gènes différentiellement exprimés et avoir leur expression dans les différents échantillons.
 
 
-- Pour cela nous ne gardons que les colonnes d'intérêt (nom des gènes et p-value ajustée), et renommons la colonne la p-value ajustée (padj) afin d'y ajouter l'information de la comparaison d'où elle vient:
+- Concentrons nous d'abord sur les résultats de DESeq pour chaque comparaison. Nous ne gardons que les colonnes d'intérêt (nom des gènes et p-value ajustée), et renommons la colonne la p-value ajustée (padj) afin d'y ajouter l'information de la comparaison d'où elle vient:
 ```{r}
 DESeq_result_arp6 <- select(DESeq_result_arp6, gene, padj ) %>% 
   rename(padj_arp6_0.5mM_vs_10mM=padj)
