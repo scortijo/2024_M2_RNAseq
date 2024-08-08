@@ -20,12 +20,18 @@ Afin de pouvoir faire ce cours sur votre ordinateur, téléchargez le matériel 
 
 #### Vous travaillerez en groupe de 2 ou 3 pour l'ensemble de cette matière afin d'identifier des gènes différentiellement exprimés, d'effectuer un clustering de ces gènes et d'explorer un des clusters que vous avez identifié.
 
+
+
+`ATTENTION!! Il est attendu que vous ayez un niveau entre débutant et intermédiaire en R pour pouvoir suivre convenablement le cours.`  
+`Si vous ne pensez pas avoir un niveau de R assez avancé, faites [ce cours en ligne](https://scortijo.github.io/2023_L3_R/) avant la première séance (environ une dizaine d'heures requises).`   
+
+
 <br>
 
 ## Les différentes séances sont (avec accès au cours):
 
 
-### Séance 1 (12/10/2023 13h15-16h30, salle TD5.129): Vérification des données
+### Séance 1 (date, heure, salle ): Vérification des données
 
 Dans cette séance, vous allez effectuer les premières étapes nécessaires avant la détection de gènes différenciellement exprimés: la vérification de la qualité des données.   
 
@@ -36,7 +42,7 @@ Dans cette séance, vous allez effectuer les premières étapes nécessaires ava
 
 <br>
 
-### Séance 2 (19/10/2023 13h15-16h30, salle TD5.129): Détection de gènes différentiellement exprimés
+### Séance 2 (date, heure, salle): Détection de gènes différentiellement exprimés
 
 Dans cette séance vous allez détecter les gènes différentiellement exprimés entre chaque paire de conditions dans nos données.  
 
@@ -47,7 +53,7 @@ Dans cette séance vous allez détecter les gènes différentiellement exprimés
 
 <br>
 
-### Séance 3 (26/10/2023 13h15-16h30, salle TD5.129): Clustering des gènes et début de l'exploration des clusters
+### Séance 3 (26/10/2023 13h15-16h30, salle TD5.129): Clustering des gènes 
 
 Dans cette séance vous allez detecter des clusters de gènes avec des expressions similaires dans les différentes conditions
 
@@ -57,7 +63,7 @@ Dans cette séance vous allez detecter des clusters de gènes avec des expressio
 
 <br>
 
-### Séance 4 (8/11/2023 13h15-16h30, salle TD5.129): Fin de l'exploration des clusters et design de primers pour la validation en laboratoire
+### Séance 4 (date, heure, salle): Exploration des clusters et design de primers pour la validation en laboratoire
 
 [Matériel Exploration des clusters](seance4/materiel/reorganisation_suite.html)  
 
