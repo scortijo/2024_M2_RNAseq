@@ -110,14 +110,14 @@ dds_0.5mM <- DESeq(ddsHTSeq_0.5mM)
 
 - Maintenant nous pouvons ajouter un seuil pour la p-value ajustée à 1%. Les gènes avec une p-value ajustée inférieure à cette valeur sont différentiellement exprimés. 
 ```{r}
-res_0.5mM <- results(dds_0.5mM, alpha=0.01)
+res_0.5mM <- results(dds_0.5mM, alpha=0.05)
 res_0.5mM
 ```
 
 
 - Afin de connaitre le nombre de gènes différentiellement exprimés pour cette comparaison nous faisons:
 ```{r}
-sum(res_0.5mM$padj < 0.01, na.rm=TRUE)
+sum(res_0.5mM$padj < 0.05, na.rm=TRUE)
 ```
 
 - Pour visualiser l'analyse d'expression différentielle nous utilisons un graphique MA:
@@ -198,7 +198,7 @@ ddsHTSeq_10mM$condition <- relevel(ddsHTSeq_10mM$condition, ref = "WT")
 
 dds_10mM <- DESeq(ddsHTSeq_10mM)
 
-res_10mM <- results(dds_10mM, alpha=0.01)
+res_10mM <- results(dds_10mM, alpha=0.05)
 resOrdered_10mM <- res_10mM[order(res_10mM$padj),]
 
 DESeq_result_10mM <- as.data.frame(resOrdered_10mM) %>% 
@@ -231,7 +231,7 @@ ddsHTSeq_WT$condition <- relevel(ddsHTSeq_WT$condition, ref = "0.5mM")
 
 dds_WT <- DESeq(ddsHTSeq_WT)
 
-res_WT <- results(dds_WT, alpha=0.01)
+res_WT <- results(dds_WT, alpha=0.05)
 resOrdered_WT <- res_WT[order(res_WT$padj),]
 
 DESeq_result_WT <- as.data.frame(resOrdered_WT) %>% 
@@ -264,7 +264,7 @@ ddsHTSeq_arp6$condition <- relevel(ddsHTSeq_arp6$condition, ref = "0.5mM")
 
 dds_arp6 <- DESeq(ddsHTSeq_arp6)
 
-res_arp6 <- results(dds_arp6, alpha=0.01)
+res_arp6 <- results(dds_arp6, alpha=0.05)
 resOrdered_arp6 <- res_arp6[order(res_arp6$padj),]
 
 DESeq_result_arp6 <- as.data.frame(resOrdered_arp6) %>% 
