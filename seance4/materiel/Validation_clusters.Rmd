@@ -30,22 +30,22 @@ Une première méthode pour étudier la fonction biologique des gènes d'un clus
 
 **Pour cela suivez les indications en image ci dessous**
 
-`**Etage1**`
+`Etape1`
 ![Etape1](Etape1_ShinyGO.png)
 
 <br>
 
-`**Etage2**`
+`Etape2`
 ![Etape2](Etape2_ShinyGO.png)
 
 <br>
 
-`**Etage3**`
+`Etape3`
 ![Etape3](Etape3_ShinyGO.png)
 
 <br>
 
-`**Etage4**`
+`Etape4`
 ![Etape4](Etape4_ShinyGO.png)
 
 <br>
