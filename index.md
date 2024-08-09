@@ -67,7 +67,7 @@ Dans cette séance vous allez détecter des clusters de gènes avec des expressi
 
 Dans cette séance vous allez analyser plus en détail l'un des clusters identifiés à la séance précédente.
 
-[Matériel Exploration des clusters](seance4/materiel/reorganisation_suite.html)  
+[Matériel Exploration des clusters](seance4/materiel/Validation_clusters.html)  
 
 
 <br>
