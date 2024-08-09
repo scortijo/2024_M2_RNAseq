@@ -63,9 +63,9 @@ Cette étude d'enrichissement en GO donne une première idée des fonctions asso
 
 Vous pouvez maintenant faire des recherches sur les GO et les gènes en vous aidant des outils suivant pour voir si leur présence dans ce cluster est logique avec leur expression en réponse au nitrate et à la mutation arp6-1, ou peut nous apprendre quelque chose sur le rôle possible de H2A.Z dans la nutrition azotée.
 Outils:   
-- [Pubmed](https://pubmed.ncbi.nlm.nih.gov/) pour rechercher de la publiographie en lien entre la GO ou un gène et la nutrition azotée et/ou H2A.Z.
+- [Pubmed](https://pubmed.ncbi.nlm.nih.gov/) pour rechercher de la publiographie en lien entre la GO ou un gène et la nutrition azotée et/ou H2A.Z.   
 - [TAIR](https://www.arabidopsis.org/) pour regarder plus en détail la fonction d'un gène.   
-- [Bar u-toronto](https://bar.utoronto.ca/) pour regarder plus en détail l'expression d'un gène dans différentes parties de la plante ou différentes conditions.
+- [Bar u-toronto](https://bar.utoronto.ca/) pour regarder plus en détail l'expression d'un gène dans différentes parties de la plante ou différentes conditions.   
 
 
 
@@ -82,7 +82,7 @@ L'étape suivante consiste à dessiner des primers pour des gènes d'intérêt a
 ![TAIR séquence cDNA](TAIR_cDNA_sequence.png)  
 <br>
 
-- Utilisez cette séquence pour dessiner les primers sur le site [Primer3](https://primer3.ut.ee/) avec les citères suivants:   
+- Utilisez cette séquence pour dessiner les primers sur le site [Primer3](https://primer3.ut.ee/) avec les critères suivants:   
   - Une taille de primers optimale à 20 et comprise en 18 et 23   
   - Un Tm de sprimers optimal à 60 et compris entre 58 et 62   
   - Un pourcentage en GC optimal à 50%   
@@ -97,7 +97,7 @@ L'étape suivante consiste à dessiner des primers pour des gènes d'intérêt a
 
 <br>
 
-**Une fois toutes ces étapes finies vous avez vos primers!**
+**Une fois toutes ces étapes finies, vous avez vos primers!**
 
 
 
