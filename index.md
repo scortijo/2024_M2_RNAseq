@@ -87,7 +87,7 @@ Dans cette séance vous allez analyser plus en détail l'un des clusters identif
 <br>
 
 ## Pour utiliser R sur votre ordinateur: 
-Il est recommandé d'installer **R** et **R studio** sur votre ordinateur afin de pouvoir travailler en autonomie entre les séances. 
+Il est recommandé d'installer **R** et **R studio** sur votre ordinateur afin de pouvoir travailler en autonomie pendant et entre les séances. 
 
 [Installer R](https://cran.biotools.fr/)
 
