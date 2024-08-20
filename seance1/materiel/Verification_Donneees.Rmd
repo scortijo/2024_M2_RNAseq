@@ -203,7 +203,7 @@ fviz_pca_ind(pca_res_CPMnorm_RNAseq_data_expressed,
 
 L'analyse par ACP semble encourageante. Cependant pour aller plus loin dans la vérification des données biologique, nous pouvons aussi vérifier que l'expression de certains gènes se comporte commme attendu dans les données de RNA-seq.
 
-Les gènes pour lesquels nous savons qu'elle doit être l'expression dans les échantillons sont:  
+Les gènes pour lesquels nous savons quelle doit être l'expression dans les échantillons sont:  
 - *ARP6* (AT3G33520)  
 - *NRT2.1* (transporteur de nitrate, AT1G08090)  
 
