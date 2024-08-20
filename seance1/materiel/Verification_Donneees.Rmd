@@ -35,7 +35,8 @@ La protéine ARP6 est impliquée dans l'intégration du variant d'histone H2A.Z 
 
 - Tout d'abord téléchargez le support du cours et les données.  
 
-- Ensuite ouvrez Rstudio et créez un nouveau document R Markdown (ou script R) que vous enregistrez dans votre dossier de travail (là où sont vos données et où vous voulez enregistrer les figures).  
+- Ensuite ouvrez Rstudio et créez un nouveau document R Markdown (ou script R) que vous enregistrez dans votre dossier de travail (là où sont vos données et où vous voulez enregistrer les figures).    
+Attention, si vous utilisez un script R, il faudra indiquer le dossier de travail avec la fonction `setwd()`. Cette étape n'a pas besoin d'être effectuée si vous utilisez un R Markdown.  
 
 - Chargez les librairies dont vous aurez besoin en utilisant la fonction suivante (exemple pour une librairie).
 ```{r}
