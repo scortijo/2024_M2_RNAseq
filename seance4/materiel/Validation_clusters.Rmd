@@ -23,7 +23,7 @@ Dans un deuxième temps, vous allez dessiner des primers pour des gènes d'inté
 # Etude des fonctions biologiques dans le cluster d'intérêt
 
 
-Une première méthode pour étudier la fonction biologique des gènes d'un cluster est de regarder l'enrichissement en `Gene Ontology (GO)`. Chaque gène est associé à plusieurs GO qui indiquent les fonctions dans lesquelles il est, ou est possiblement, impliqué. L'étude d'enrichissement on GO consiste à définir si une GO est statistiquement plus enrichi dans notre groupe de gènes (venant d'un cluster) par rapport à un groupe témoin. Ce groupe témoin peut être l'ensemble des gènes du génome, les gènes sur lesquels l'analyse d'expression différentielle a été effectuée ou l'ensemble des gènes différentiellement exprimés utilisés pour le clustering. 
+Une première méthode pour étudier la fonction biologique des gènes d'un cluster est de regarder l'enrichissement en `Gene Ontology (GO)`. Chaque gène est associé à plusieurs GO qui indiquent les fonctions dans lesquelles il est, ou est possiblement, impliqué. L'étude d'enrichissement on GO consiste à définir si une GO est statistiquement plus enrichie dans notre groupe de gènes (venant d'un cluster) par rapport à un groupe témoin. Ce groupe témoin peut être l'ensemble des gènes du génome, les gènes sur lesquels l'analyse d'expression différentielle a été effectuée ou l'ensemble des gènes différentiellement exprimés utilisés pour le clustering. 
 
 
 > Effectuez une analyse d'enrichissement en GO pour votre cluster en utilisant l'outil [ShinyGO](http://bioinformatics.sdstate.edu/goc/).   
@@ -61,7 +61,8 @@ Cette étude d'enrichissement en GO donne une première idée des fonctions asso
 
 <br>
 
-Vous pouvez maintenant faire des recherches sur les GO et les gènes en vous aidant des outils suivant pour voir si leur présence dans ce cluster est logique avec leur expression en réponse au nitrate et à la mutation arp6-1, ou peut nous apprendre quelque chose sur le rôle possible de H2A.Z dans la nutrition azotée.
+Vous pouvez maintenant faire des recherches sur les GO et les gènes en vous aidant des outils suivant pour voir si leur présence dans ce cluster est logique avec leur expression en réponse au nitrate et à la mutation arp6-1, ou peut nous apprendre quelque chose sur le rôle possible de H2A.Z dans la nutrition azotée.  
+
 Outils:   
 - [Pubmed](https://pubmed.ncbi.nlm.nih.gov/) pour rechercher de la publiographie en lien entre la GO ou un gène et la nutrition azotée et/ou H2A.Z.   
 - [TAIR](https://www.arabidopsis.org/) pour regarder plus en détail la fonction d'un gène.   
