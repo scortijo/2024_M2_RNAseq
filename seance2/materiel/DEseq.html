@@ -1545,7 +1545,7 @@ besoin.</li>
 - tidyverse<br />
 - DESeq2</p>
 <p><br></p>
-<p><strong>Avec <code>DESeq2</code> nous detections les gènes
+<p><strong>Avec <code>DESeq2</code> nous detectons les gènes
 différentiellement exprimés entre 2 conditions. Nous allons donc devoir
 faire l’analyse pour chacune des comparaisons suivantes:</strong><br />
 <strong>- <code>WT</code> vs <code>arp6-1</code> en faible concentration
@@ -1634,7 +1634,7 @@ suivante:</li>
 <pre class="r"><code>dds_0.5mM &lt;- DESeq(ddsHTSeq_0.5mM)</code></pre>
 <ul>
 <li>Maintenant nous pouvons ajouter un seuil pour la p-value ajustée à
-1%. Les gènes avec une p-value ajustée inférieure à cette valeur sont
+5%. Les gènes avec une p-value ajustée inférieure à cette valeur sont
 différentiellement exprimés.</li>
 </ul>
 <pre class="r"><code>res_0.5mM &lt;- results(dds_0.5mM, alpha=0.05)
@@ -1673,9 +1673,7 @@ gènes différentiellement exprimés sont en bleu.</p>
 <blockquote>
 <p>Que pensez-vous de ce graphique?<br />
 Est-ce que la détection de gènes différentiellement exprimés est la même
-peut importe le niveau d’expression?<br />
-Pensez-vous que le seuil à 5% est cohérent ou devrions nous utiliser un
-seuil plus (0.5%) ou moins (5%) stringeant?</p>
+peut importe le niveau d’expression?</p>
 </blockquote>
 <ul>
 <li>Nous allons maintenant récupérer le résultat de DESeq dans un objet

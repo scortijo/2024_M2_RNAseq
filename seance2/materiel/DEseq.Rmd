@@ -33,7 +33,7 @@ library(DESeq2)
 
 <br>
 
-**Avec `DESeq2` nous detections les gènes différentiellement exprimés entre 2 conditions. Nous allons donc devoir faire l'analyse pour chacune des comparaisons suivantes:**   
+**Avec `DESeq2` nous detectons les gènes différentiellement exprimés entre 2 conditions. Nous allons donc devoir faire l'analyse pour chacune des comparaisons suivantes:**   
 **- `WT` vs `arp6-1` en faible concentration (0.5 mM) de nitrate**   
 **- `WT` vs `arp6-1` en forte concentration (10 mM) de nitrate**   
 **- `Faible concentration` (0.5 mM) vs `forte concentration` (10 mM) de nitrate chez le WT**   
@@ -108,7 +108,7 @@ dds_0.5mM <- DESeq(ddsHTSeq_0.5mM)
 ```
 
 
-- Maintenant nous pouvons ajouter un seuil pour la p-value ajustée à 1%. Les gènes avec une p-value ajustée inférieure à cette valeur sont différentiellement exprimés. 
+- Maintenant nous pouvons ajouter un seuil pour la p-value ajustée à 5%. Les gènes avec une p-value ajustée inférieure à cette valeur sont différentiellement exprimés. 
 ```{r}
 res_0.5mM <- results(dds_0.5mM, alpha=0.05)
 res_0.5mM
@@ -132,8 +132,7 @@ Ce graphique représente la différence d'expression entre les deux conditions e
 > Que pensez-vous de ce graphique?  
 > Est-ce que la détection de gènes différentiellement exprimés est la même 
 peut importe le niveau d'expression?  
-> Pensez-vous que le seuil à 5% est cohérent ou devrions nous utiliser un seuil 
-plus (0.5%) ou moins (5%) stringeant?
+
 
 
 - Nous allons maintenant récupérer le résultat de DESeq dans un objet de format data.frame, qui nous permettra de faire des analyses sur ces gènes:
