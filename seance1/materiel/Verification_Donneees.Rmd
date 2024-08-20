@@ -37,7 +37,7 @@ La protéine ARP6 est impliquée dans l'intégration du variant d'histone H2A.Z 
 
 - Ensuite ouvrez Rstudio et créez un nouveau document R Markdown (ou script R) que vous enregistrez dans votre dossier de travail (là où sont vos données et où vous voulez enregistrer les figures).  
 
-- Chargez les librairies dont vous aurez besoin en utilisant la fonction suivante (exemple pour une librarie).
+- Chargez les librairies dont vous aurez besoin en utilisant la fonction suivante (exemple pour une librairie).
 ```{r}
 library(tidyverse)
 ```
