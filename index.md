@@ -95,11 +95,11 @@ Il est recommandé d'installer **R** et **R studio** sur votre ordinateur afin d
 
 Dans chaque cas, téléchargez la version pour votre système opérateur (Mac, Windows ou Linux) et installez les programmes normalement.
 
-Vous devez aussi avoir les packages `tidyverse`, `visdat`, `scTenifoldNet`, `gplots` et `DESeq2` installés. 
+Vous devez aussi avoir les packages `tidyverse`, `visdat`, `scTenifoldNet`, `factoextra`, `gplots`, `matrixStats`, `RColorBrewer` et `DESeq2` installés. 
 Pour cela:
 1. Assurez vous d'avoir accès à internet
 2. Ouvrez Rstudio
-3. Dans la "console" (panel en haut à gauche), tapez `install.packages(c("tidyverse","visdat", "scTenifoldNet", "gplots"))` puis enter
+3. Dans la "console" (panel en haut à gauche), tapez `install.packages(c("tidyverse","visdat", "scTenifoldNet", "factoextra", "gplots", "matrixStats", "RColorBrewer"))` puis enter
 4. Pour `DESeq2` installez en tapant dans la "console" 
 `install.packages("BiocManager")` puis enter (sauf si BiocManager est déjà installé sur votre Rstudio)
 `BiocManager::install("DESeq2")` puis enter
