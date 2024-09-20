@@ -31,7 +31,7 @@ Afin de pouvoir faire ce cours sur votre ordinateur, téléchargez le matériel 
 ## Les différentes séances sont (avec accès au cours):
 
 
-### Séance 1 (lundi 23 septembre, 9h45-11h15, salle, salle ): Vérification des données
+### Séance 1 (lundi 23 septembre, 11h30-13h, salle, salle ): Vérification des données
 
 Dans cette séance, vous allez effectuer les premières étapes nécessaires avant la détection de gènes différenciellement exprimés: la vérification de la qualité des données.   
 
@@ -42,7 +42,7 @@ Dans cette séance, vous allez effectuer les premières étapes nécessaires ava
 
 <br>
 
-### Séance 2 (lundi 23 septembre, 11h30-13h, salle): Détection de gènes différentiellement exprimés
+### Séance 2 (lundi 23 septembre, 13h15-14h45, salle): Détection de gènes différentiellement exprimés
 
 Dans cette séance vous allez détecter les gènes différentiellement exprimés entre chaque paire de conditions dans nos données.  
 
