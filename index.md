@@ -31,7 +31,7 @@ Afin de pouvoir faire ce cours sur votre ordinateur, téléchargez le matériel 
 ## Les différentes séances sont (avec accès au cours):
 
 
-### Séance 1 (lundi 23 septembre, 11h30-13h, salle, salle ): Vérification des données
+### Séance 1 (lundi 23 septembre, 11h30-13h, salle 5.129): Vérification des données
 
 Dans cette séance, vous allez effectuer les premières étapes nécessaires avant la détection de gènes différenciellement exprimés: la vérification de la qualité des données.   
 
@@ -42,7 +42,7 @@ Dans cette séance, vous allez effectuer les premières étapes nécessaires ava
 
 <br>
 
-### Séance 2 (lundi 23 septembre, 13h15-14h45, salle): Détection de gènes différentiellement exprimés
+### Séance 2 (lundi 23 septembre, 13h15-14h45, salle 5.129): Détection de gènes différentiellement exprimés
 
 Dans cette séance vous allez détecter les gènes différentiellement exprimés entre chaque paire de conditions dans nos données.  
 
@@ -53,7 +53,7 @@ Dans cette séance vous allez détecter les gènes différentiellement exprimés
 
 <br>
 
-### Séance 3 (mardi 24 septembre, 9h45-11h15, salle): Clustering des gènes 
+### Séance 3 (mardi 24 septembre, 9h45-11h15, salle 5.127): Clustering des gènes 
 
 Dans cette séance vous allez détecter des clusters de gènes avec des expressions similaires dans les différentes conditions
 
@@ -63,7 +63,7 @@ Dans cette séance vous allez détecter des clusters de gènes avec des expressi
 
 <br>
 
-### Séance 4 (mardi 24 septembre, 11h30-13h, salle): Exploration des clusters et design de primers pour la validation en laboratoire
+### Séance 4 (mardi 24 septembre, 11h30-13h, salle 5.127): Exploration des clusters et design de primers pour la validation en laboratoire
 
 Dans cette séance vous allez analyser plus en détail l'un des clusters identifiés à la séance précédente.
 
