@@ -26,7 +26,7 @@ Dans un deuxième temps, vous allez dessiner des primers pour des gènes d'inté
 Une première méthode pour étudier la fonction biologique des gènes d'un cluster est de regarder l'enrichissement en `Gene Ontology (GO)`. Chaque gène est associé à plusieurs GO qui indiquent les fonctions dans lesquelles il est, ou est possiblement, impliqué. L'étude d'enrichissement on GO consiste à définir si une GO est statistiquement plus enrichie dans notre groupe de gènes (venant d'un cluster) par rapport à un groupe témoin. Ce groupe témoin peut être l'ensemble des gènes du génome, les gènes sur lesquels l'analyse d'expression différentielle a été effectuée ou l'ensemble des gènes différentiellement exprimés utilisés pour le clustering. 
 
 
-> Effectuez une analyse d'enrichissement en GO pour votre cluster en utilisant l'outil [ShinyGO](http://bioinformatics.sdstate.edu/goc/).   
+> Effectuez une analyse d'enrichissement en GO pour votre cluster en utilisant l'outil [ShinyGO](http://bioinformatics.sdstate.edu/go/).   
 
 **Pour cela suivez les indications en image ci dessous**
 
@@ -66,7 +66,8 @@ Vous pouvez maintenant faire des recherches sur les GO et les gènes en vous aid
 Outils:   
 - [Pubmed](https://pubmed.ncbi.nlm.nih.gov/) pour rechercher de la bibliographie en lien entre la GO ou un gène et la nutrition azotée et/ou H2A.Z.   
 - [TAIR](https://www.arabidopsis.org/) pour regarder plus en détail la fonction d'un gène.   
-- [Bar u-toronto](https://bar.utoronto.ca/) pour regarder plus en détail l'expression d'un gène dans différentes parties de la plante ou différentes conditions.   
+- [Bar u-toronto](https://bar.utoronto.ca/) pour regarder plus en détail l'expression d'un gène dans différentes parties de la plante ou différentes conditions.    
+- [Browser épigénomique](https://jbrowse.arabidopsis.org/?data=Araport11&loc=Chr1%3A26334566..26341735&tracks=TAIR10_genome%2CA11-GL%2CA11-PC%2CSALK_tDNAs%2Cchip_leaf-h2az%2CTAIR10_loci%2CTAIR10_genes%2Cmethyl_leaf&highlight=) pour regarder la présence de H2A.Z
 
 
 
