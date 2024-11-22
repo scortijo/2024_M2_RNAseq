@@ -86,6 +86,13 @@ ddsHTSeq_0.5mM
 
 <br>
 
+- Nous devons ensuite enlever les gènes non exprimés ou très faiblement exprimés: 
+```{r}
+keep <- rowSums(counts(ddsHTSeq_0.5mM)) >= 6
+ddsHTSeq_0.5mM <- ddsHTSeq_0.5mM[keep,]
+```
+
+
 
 - DESeq doit savoir quelle est la condition de référence, et quelle est la condition que nous comparons à cette référence. Ceci se fait avec la fonction suivante: 
 ```{r}
